@@ -11,6 +11,11 @@ class Store extends Model
 {
     use HasFactory;
     
+    public function getByLimit(int $limit_count = 50)
+    {
+        //
+    }
+    
     public function posts()
     {
          //1対多 storeとpost
