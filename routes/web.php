@@ -31,13 +31,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/ramen-search',function(){
-    return view('stores.search');
+    return view('stores/search');
 });
 
-Route::post('/ramen-search',function(Request $request){
-    $keyword=$request->input('keyword');
-    return view('stores.results',['keyword'=>$keyword]);
-});
+Route::post('/ramen-search',[StoreController::class,'index']);
 
 Route::get('/posts',[PostController::class,'index']);
 
