@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\StoreController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +29,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/ramen-search',function(){
+    return view('stores/search');
+});
+
+Route::post('/ramen-search',[StoreController::class,'index']);
 
 Route::get('/posts',[PostController::class,'index']);
 
