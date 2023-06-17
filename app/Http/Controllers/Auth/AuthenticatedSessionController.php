@@ -29,7 +29,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $redirectTo = $request->input('previous_url') ?? $this->redirectTo;
+        
+        return redirect($redirectTo);
     }
 
     /**
@@ -43,6 +45,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/search');
     }
 }

@@ -3,24 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+
+
 
 class StoreController extends Controller
 {
-         public function index()
+         public function index(Request $request)
     {
-        $apiKey = config('services.google.api_key');
-        $query = 'restaurants in Tokyo';
-
+       
         $client = new Client();
         $response = $client->get('https://maps.googleapis.com/maps/api/place/textsearch/json', [
             'query' => [
-                'query' => $query,
-                'key' => $apiKey,
+                'query' => $request->query('query'),
+                'key' => env('GOOGLE_PLACES_API_KEY'),
             ]
         ]);
+ 
 
-        $places = json_decode($response->getBody(), true)['results'];
-
-        return view('places', ['places' => $places]);
+        $store = json_decode($response->getBody()->getContents(), true)['results'] ?? [];
+        return view('stores/results', ['stores' => $store]);
     }
 }
