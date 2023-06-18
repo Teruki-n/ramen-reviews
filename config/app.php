@@ -212,5 +212,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+    
+    'api_key' => env('GOOGLE_PLACES_API_KEY'),
 
 ];

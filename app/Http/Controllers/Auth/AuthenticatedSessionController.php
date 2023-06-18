@@ -29,9 +29,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $redirectTo = $request->input('previous_url') ?? $this->redirectTo;
         
-        return redirect($redirectTo);
+        // リファラーヘッダーを取得
+        $redirectTo = $request->headers->get('referer');
+    
+        // intendedメソッドを使って、以前のページにリダイレクトするか、
+        // セッションにリダイレクト先がない場合はリファラーかデフォルトのURLにリダイレクトします。
+        return redirect()->intended($redirectTo ?? '/search');
     }
 
     /**

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,10 @@ use App\Http\Controllers\StoreController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/location', [TestController::class, 'getGeoLocation']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,6 +42,5 @@ Route::get('/search',function(){
 Route::get('/search/results',[StoreController::class,'index'])->name('search.results');
 
 Route::get('/posts',[PostController::class,'index']);
-
 
 require __DIR__.'/auth.php';
