@@ -29,7 +29,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
+        // リファラーヘッダーを取得
+        $redirectTo = $request->headers->get('referer');
+    
+        // intendedメソッドを使って、以前のページにリダイレクトするか、
+        // セッションにリダイレクト先がない場合はリファラーかデフォルトのURLにリダイレクトします。
+        return redirect()->intended($redirectTo ?? '/search');
     }
 
     /**
@@ -43,6 +49,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/search');
     }
 }

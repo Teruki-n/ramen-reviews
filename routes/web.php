@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/location', [TestController::class, 'getGeoLocation']);
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,13 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/ramen-search',function(){
+Route::get('/search',function(){
     return view('stores/search');
 });
 
-Route::post('/ramen-search',[StoreController::class,'index']);
+Route::get('/search/results',[StoreController::class,'index'])->name('search.results');
 
 Route::get('/posts',[PostController::class,'index']);
-
 
 require __DIR__.'/auth.php';
