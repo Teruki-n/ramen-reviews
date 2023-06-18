@@ -13,15 +13,16 @@ class StoreController extends Controller
     {
        
         $client = new Client();
-        $response = $client->get('https://maps.googleapis.com/maps/api/place/textsearch/json', [
+        $response = $client->request('GET','https://maps.googleapis.com/maps/api/place/textsearch/json', [
             'query' => [
-                'query' => $request->query('query'),
-                'key' => env('GOOGLE_PLACES_API_KEY'),
+                'query' => $request->input('query'),
+                'key' => config('GOOGLE_PLACES_API_KEY'),
             ]
         ]);
- 
-
+        
+    
         $store = json_decode($response->getBody()->getContents(), true)['results'] ?? [];
+        dd($store);
         return view('stores/results', ['stores' => $store]);
     }
 }
