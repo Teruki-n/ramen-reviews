@@ -11,6 +11,17 @@ class Post extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+    'user_id',
+    'name',
+    'kind',
+    'taste',
+    'kind',
+    'pref',
+    'rating',
+    'comment',
+    'image_url',
+];
 
 
     public function user()
@@ -24,4 +35,5 @@ class Post extends Model
          //1対多 storeとpost
         return $this->belongsTo(Store::class);    
     }
+    
 }
