@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('store_id');
-            $table->foreign('store_id')->references('id')->on('stores');
             $table->string('name',50);
             $table->enum('taste',['醤油','味噌','塩','豚骨','魚介豚骨','煮干し','白湯','担々麵','家系','二郎','その他']);
             $table->enum('kind',['ラーメン','つけ麵','汁なし']);
@@ -32,7 +30,7 @@ return new class extends Migration
                     ]);          
             $table->integer('rating');
             $table->string('image_url')->nullable();
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,40 +2,17 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Ramen_Review_Hub</title>
+        <title>Ramen_Review_Hub - 店舗検索</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/background.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
          @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        <header class="text-gray-600 body-font border-b bg-gray-800">
-            <nav>
-                <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-                    <img src="{{ asset('images/logo.png') }}" alt="サイトのロゴ" class="w-10 h-10">
-                    <div class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 md:mr-auto">
-                        <span class="text-white rounded-md px-3 py-2 text-lg font-medium">RRH |</span>
-                        <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">店舗検索</a>
-                        <a class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">レビュー掲示板</a>
-                    </div>
-                    <div class="flex">
-                        @if(Auth::guest())
-                            <a href="{{ route('login') }}" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-4 py-2 text-sm font-medium">ログイン</a>
-                            <a href="{{ route('register') }}" class="text-white hover:bg-gray-700 hover:text-white rounded-md px-6 py-2 text-sm font-medium">会員登録</a>
-                        @else
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                 Logout
-                             </a>
-                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        @endif
-                    </div>
-            　 </div>
-             </nav>
-        </header>
-         <main class="h-screen place-items-center bg-white px-6 sm:py-32 lg:px-12" style="background-image: url('{{ asset('images/store.png') }}');　background-size: cover; background-position: center;">
+        <!--header-->
+        <x-header />
+        <!--content-->
+         <main class="h-screen px-6 sm:py-32 lg:px-12 overflow-hidden" style="background-image: url('{{ asset('images/store.png') }}'); background-size: cover; background-position: center;">
         　  <div class="max-w-screen-lg mx-auto">
                 <h1 class="text-center  text-5xl font-bold tracking-tight text-gray-900 mb-10">Ramen Review Hub</h1>
                 　<form action="{{route('search.results')}}" method="get">

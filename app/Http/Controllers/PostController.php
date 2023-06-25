@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -12,10 +13,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Post $post)
-    {
-        return('posts/index');
-    }
+    // public function index(Post $post)
+    // {
+    //     return view("posts.index")->with(['posts' =>$post->get()]);
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("posts.create");
     }
 
     /**
@@ -33,9 +34,17 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $input =$request['post'];
+         //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
+        if($request->file('image_url')){
+            $image_url = Cloudinary::upload($request->file('image_url')->getRealPath())->getSecurePath();
+            $input += ['image_url' => $image_url];
+        }
+        $input['user_id'] = auth()->id();
+        $post->fill($input)->save();
+        return redirect('/posts');
     }
 
     /**
@@ -44,9 +53,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.index')->with(['post' => $post]);
     }
 
     /**
