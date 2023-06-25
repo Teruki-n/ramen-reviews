@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Cloudinary;
 
+
 class PostController extends Controller
 {
     /**
@@ -13,46 +14,40 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index(Post $post)
-    // {
-    //     return view("posts.index")->with(['posts' =>$post->get()]);
-    // }
+     public function index(Post $post)
+    {
+        return view("posts.index");
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         return view("posts.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request, Post $post)
     {
+        //投稿作成のバリデーション
+        $validatedData = $request->validate([
+            'post.taste'=>['required'],
+            'post.kind'=>['required'],
+            'post.pref'=>['required'],
+            'post.rating'=>['required'],
+        ]);
+        
         $input =$request['post'];
-         //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
+        $input['user_id'] = auth()->id();
+         //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入
         if($request->file('image_url')){
             $image_url = Cloudinary::upload($request->file('image_url')->getRealPath())->getSecurePath();
             $input += ['image_url' => $image_url];
         }
-        $input['user_id'] = auth()->id();
         $post->fill($input)->save();
         return redirect('/posts');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Post $post)
     {
         return view('posts.index')->with(['post' => $post]);
