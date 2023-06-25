@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StoreController;
-use App\Http\Controllers\TestController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,11 +17,8 @@ use App\Http\Controllers\TestController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-
+// test
 Route::get('/location', [TestController::class, 'getGeoLocation']);
 
 
@@ -31,16 +28,21 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+     Route::get('/redirect-after-login', [ProfileController::class, 'after'])->name('profile.after');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/search',function(){
+Route::get('/',function(){
     return view('stores/search');
-});
+})->name('search');
 
-Route::get('/search/results',[StoreController::class,'index'])->name('search.results');
+Route::get('/results',[StoreController::class,'index'])->name('search.results');
 
-Route::get('/posts',[PostController::class,'index']);
+Route::get('/posts/create',[PostController::class,'create'])->name('posts.create')->middleware('auth');
 
+Route::post('/posts',[PostController::class,'store']);
+
+Route::get('/posts',[PostController::class,'show'])->name('posts');
+// Route::get('/posts',[PostController::class,'show']);
 require __DIR__.'/auth.php';
