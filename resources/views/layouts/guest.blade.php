@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-r from-red-500 to-yellow-500">
             <div>
                 <a href="/">
-                    <img src="{{ asset('images/lantan_logo.png') }}" alt="提灯のロゴ"  style="width: 120px; height: 120px;" />
+                    <img src="{{ asset('images/logo2.svg') }}" alt="ロゴ"  style="width: 120px; height: 120px;" />
                 </a>
             </div>
 

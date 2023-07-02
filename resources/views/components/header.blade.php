@@ -1,8 +1,8 @@
 <div>
-    <header class="text-gray-600 body-font border-b bg-gray-800">
+    <header class="text-gray-600 body-font border-b bg-gray-700">
         <nav>
             <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-                <img src="{{ asset('images/logo.png') }}" alt="サイトのロゴ" class="w-10 h-10">
+                <img src="{{ asset('images/logo.svg') }}" alt="サイトのロゴ" class="w-10 h-10">
                 <div class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0 md:mr-auto">
                     <span class="text-white rounded-md px-3 py-2 text-lg font-medium">RRH |</span>
                     <a href="{{ route('search') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">店舗検索</a>

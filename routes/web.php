@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +33,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//test
+Route::get('/place',[TestController::class,'place']);
+
+Route::get('/review',[TestController::class,'review']);
+
 Route::get('/',function(){
     return view('stores/search');
 })->name('search');
 
 Route::get('/results',[StoreController::class,'index'])->name('search.results');
-
-Route::get('/posts',[PostController::class,'index']);
 
 Route::get('/posts/create',[PostController::class,'create'])->name('posts.create')->middleware('auth');
 

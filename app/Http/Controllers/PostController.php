@@ -14,12 +14,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-     public function index(Post $post)
-    {
-        return view("posts.index");
-    }
+ 
 
-   
     public function create()
     {
         return view("posts.create");
@@ -34,6 +30,7 @@ class PostController extends Controller
             'post.kind'=>['required'],
             'post.pref'=>['required'],
             'post.rating'=>['required'],
+            'post.comment'=>['min:20'],
         ]);
         
         $input =$request['post'];
@@ -50,7 +47,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('posts.index')->with(['post' => $post]);
+        return view('posts.index')->with(['posts' => $post->getPaginationByLimit()]);
     }
 
     /**

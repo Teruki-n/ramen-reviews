@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Models\Store;
+// use App\Models\Store;
 
 class Post extends Model
 {
@@ -23,17 +23,21 @@ class Post extends Model
     'image_url',
 ];
 
-
+    public function getPaginationByLimit(int $limit_count =5 )
+    {
+        return $this->orderBy('updated_at','DESC')->paginate($limit_count);
+    }
+    
     public function user()
     {
         //1対多 userとpost
         return $this->belongsTo(User::class);    
     }
     
-       public function store()
-    {
-         //1対多 storeとpost
-        return $this->belongsTo(Store::class);    
-    }
+    //   public function store()
+    // {
+    //      //1対多 storeとpost
+    //     return $this->belongsTo(Store::class);    
+    // }
     
 }

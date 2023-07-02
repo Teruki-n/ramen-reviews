@@ -20,7 +20,10 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $url = url()->previous();
+        $previousUrl = parse_url($url);
+        $path =  $previousUrl['path'];
+        return view('auth.register',compact('path'));
     }
 
     /**
@@ -45,7 +48,9 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        
+        $path = $request['previous'];
+        return redirect($path);
 
-        return redirect(RouteServiceProvider::HOME);
     }
 }

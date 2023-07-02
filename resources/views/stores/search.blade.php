@@ -12,14 +12,14 @@
         <!--header-->
         <x-header />
         <!--content-->
-         <main class="h-screen px-6 sm:py-32 lg:px-12 overflow-hidden" style="background-image: url('{{ asset('images/store.png') }}'); background-size: cover; background-position: center;">
+         <main class="h-screen px-6 sm:py-32 lg:px-12" style="background-image: url('{{ asset('images/store.png') }}'); background-size: cover;background-size: cover; background-position: center;">
         　  <div class="max-w-screen-lg mx-auto">
-                <h1 class="text-center  text-5xl font-bold tracking-tight text-gray-900 mb-10">Ramen Review Hub</h1>
+                <h1 class="italic text-center  text-5xl font-bold tracking-tight text-gray-900 mb-10">Ramen Review Hub</h1>
                 　<form action="{{route('search.results')}}" method="get">
                       @csrf
                     <div class="rounded-md shadow-sm -space-y-px  md:w-1/2 mx-auto">
                         <div class="flex">
-                            <input type="text" name="query" required placeholder="店舗名、味、種類" class="appearance-none rounded-l-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"/>
+                            <input type="text" name="query" required placeholder="店舗名、味、種類" class="appearance-none rounded-l-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"/>
                             <button type="submit" class="flex items-center justify-center w-10 h-10 border border-transparent bg-indigo-600 text-white rounded-r-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                  <i class="fas fa-search"></i>
                             </button>

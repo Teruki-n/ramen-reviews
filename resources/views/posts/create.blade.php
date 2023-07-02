@@ -83,7 +83,7 @@
                                   <input id="star1" type="radio" name="post[rating]" value="1"  @if(old('post.rating') == '1') checked @endif>
                                   <label for="star1">★</label>
                                 </div>
-                                 @error('post.rating')
+                                @error('post.rating')
                                     <div class="text-red-500 text-sm">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -92,6 +92,9 @@
                             <div class="mb-4">
                                 <label class="text-gray-900 dark:text-gray-200" for="review">コメント:</label>
                                 <textarea id="textarea" type="textarea" rows="6" name="post[comment]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none">{{ old('post.comment') }}</textarea>
+                                @error('post.comment')
+                                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                                @enderror
                             </div>
                             
                             <!--店やラーメンの画像-->
@@ -123,9 +126,11 @@
                           <button type="submit" class="px-7 py-2 text-sm font-medium text-blue-500 bg-white border border-gray-200 rounded-r-md hover:bg-blue-500  hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                             投稿
                           </button>
-                          <button type="button"  class="px-7 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                            一覧へ戻る
-                          </button>
+                          <a href="{{ route('posts') }}"> 
+                            <button type="button" class="px-7 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                一覧へ戻る
+                            </button>
+                          </a>
                           <button type="reset" class="px-7 py-2 text-sm font-medium text-red-500 bg-white border border-gray-200 rounded-l-lg hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                             リセット
                           </button>
