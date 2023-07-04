@@ -41,7 +41,7 @@ class PostController extends Controller
             'post.kind'=>['required'],
             'post.pref'=>['required'],
             'post.rating'=>['required'],
-            'post.comment'=>['min:20'],
+            'post.comment'=>['min:20','max:1000'],
         ]);
         
         $input =$request['post'];

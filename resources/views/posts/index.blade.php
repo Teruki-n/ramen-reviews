@@ -399,9 +399,27 @@
         
                     <!--To the create page-->
                     <div class="fixed bottom-0 right-0 mb-4 mr-4">
-                      <a href="{{ route('posts.create') }}" class="py-1 inline-block p-2 rounded-full border-2  hover:brightness-50">
-                        <img src="{{ asset('images/create_icon.svg') }}" alt="Create Post" class="w-8 h-10">
-                      </a>
+                        @auth
+                          <a href="{{ route('posts.create') }}" class="py-1 inline-block p-2 rounded-full border-2  hover:brightness-50">
+                            <img src="{{ asset('images/create_icon.svg') }}" alt="Create Post" class="w-8 h-10">
+                          </a>
+                        @endauth
+                        
+                        @guest
+                            <!-- Non-authenticated users will see a popup -->
+                            <a href="#" onclick="askForLogin();" class="py-1 inline-block p-2 rounded-full border-2 hover:brightness-50">
+                                <img src="{{ asset('images/create_icon.svg') }}" alt="Create Post" class="w-8 h-10">
+                            </a>
+                            <script>
+                                function askForLogin() {
+                                    const userConfirmed = confirm("投稿するにはログインが必要です。ログインしますか?");
+                                    if (userConfirmed) {
+                                        // Redirect to login page
+                                        window.location.href = "{{ route('login') }}";
+                                    }
+                                }
+                            </script>
+                        @endguest
                     </div>
                 </div>
          </main>
