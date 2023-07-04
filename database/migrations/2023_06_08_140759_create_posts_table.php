@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name',50);
-            $table->enum('taste',['醤油','味噌','塩','豚骨','魚介豚骨','煮干し','白湯','担々麵','家系','二郎','その他']);
+            $table->enum('taste',['醤油','味噌','塩','豚骨','魚介系','煮干し','白湯','担々麵','家系','二郎','その他']);
             $table->enum('kind',['ラーメン','つけ麵','汁なし']);
             $table->enum('pref', [
                         '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',

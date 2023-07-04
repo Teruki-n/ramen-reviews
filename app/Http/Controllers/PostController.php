@@ -9,12 +9,23 @@ use Cloudinary;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
- 
+
+    public function index(Request $request, Post $post)
+    {   
+        //検索対応
+        $search = $request->input('search');
+
+        $query = Post::query();
+    
+        if ($search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+    
+        $posts = $query->orderBy('updated_at', 'DESC')->paginate(5);
+    
+        return view('posts.index', compact('posts'));
+
+    }
 
     public function create()
     {
@@ -45,10 +56,12 @@ class PostController extends Controller
     }
 
 
-    public function show(Post $post)
+    public function show(Request $request)
     {
-        return view('posts.index')->with(['posts' => $post->getPaginationByLimit()]);
+        //
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.
