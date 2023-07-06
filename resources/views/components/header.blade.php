@@ -30,7 +30,7 @@
                                     <x-dropdown-link :href="'#'">
                                         {{ __('お気に入り一覧') }}
                                     </x-dropdown-link>
-                                    <x-dropdown-link :href="'#'">
+                                    <x-dropdown-link :href="route('history')">
                                         {{ __('投稿履歴') }}
                                     </x-dropdown-link>
                                     <form method="POST" action="{{ route('logout') }}">

@@ -19,14 +19,14 @@
                     <form action="/posts" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
-                            <!--店の名前-->
+                            <!--name-->
                             <div>
                                 <label class="text-gray-900 dark:text-gray-200" for="shopname">店舗名:</label>
                                 <input id="username" type="text" name="post[name]" required placeholder="例：中華蕎麦　とみ田" value="{{ old('post.name') }}" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none ">
                           
                             </div>
                             
-                            <!--ラーメンの味-->
+                            <!--taste-->
                             <div class="mb-4">
                                 <label class="text-gray-900 dark:text-gray-200" for="taste">味:</label>
                                     <select name="post[taste]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none ">
@@ -40,7 +40,7 @@
                                 @enderror
                             </div>
                             
-                            <!--ラーメンの種類-->
+                            <!--kind-->
                             <div class="mb-4">
                                 <label class="text-gray-900 dark:text-gray-200" for="kind">種類:</label>
                                 <select name="post[kind]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none " >
@@ -54,7 +54,7 @@
                                 @enderror
                             </div>
                             
-                            <!--店の所在地-->
+                            <!--prefecture-->
                             <div class="mb-4">
                                 <label class="text-gray-900 dark:text-gray-200" for="prefecture">都道府県:</label>
                                 <select name="post[pref]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none " >
@@ -68,7 +68,7 @@
                                 @enderror
                             </div>
                             
-                            <!--ラーメンの美味しさ-->
+                            <!--rating-->
                             <div class="mb-4">
                              <label class="text-gray-900 dark:text-gray-200" for="username">おいしさ:</label>
                                 <div class="rate-form block w-full px-4   bg-white border border-gray-300 rounded-md dark:bg-gray-800  dark:border-gray-600 " >
@@ -88,7 +88,7 @@
                                 @enderror
                             </div>
                             
-                            <!--コメント欄-->
+                            <!--comment-->
                             <div class="mb-4">
                                 <label class="text-gray-900 dark:text-gray-200" for="review">コメント:</label>
                                 <textarea id="textarea" type="textarea" rows="6" name="post[comment]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none">{{ old('post.comment') }}</textarea>
@@ -97,7 +97,7 @@
                                 @enderror
                             </div>
                             
-                            <!--店やラーメンの画像-->
+                            <!--image-->
                             <div class="mb-4">
                                 <div class="flex items-center justify-center w-full">
                                 <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
@@ -110,30 +110,56 @@
                                     </div>
                                     <input id="dropzone-file" type="file" class="hidden" name="post[image_url]" onchange="displayImagePreview(event)" />
                                 </label>
-                            </div> 
-                               <!-- Element to display the selected image -->
-                            <div class="mt-4" id="image-preview-container" style="display: none;">
-                                <img id="image-preview" src="" alt="Image preview" style="max-width: 800px; max-height: 400px;">
+                                </div> 
+                                
+                                <!-- Element to display the selected image -->
+                                <div class="mt-4" id="image-preview-container" style="display: none;">
+                                    <img id="image-preview" src="" alt="Image preview" style="max-width: 800px; max-height: 400px;">
+                                </div>
                             </div>
-                        </div>
                         
-                        <div class="flex flex-row-reverse rounded-md shadow-sm mt-10"role="group">
-                          <button type="submit" class="px-7 py-2 text-sm font-medium text-blue-500 bg-white border border-gray-200 rounded-r-md hover:bg-blue-500  hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                            投稿
-                          </button>
-                          <a href="{{ route('posts') }}"> 
-                            <button type="button" class="px-7 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                一覧へ戻る
-                            </button>
-                          </a>
-                          <button type="reset" class="px-7 py-2 text-sm font-medium text-red-500 bg-white border border-gray-200 rounded-l-lg hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                            リセット
-                          </button>
-                        </div>
+                            <div class="flex flex-row-reverse rounded-md shadow-sm mt-10"role="group">
+                              <button type="submit" class="px-7 py-2 text-sm font-medium text-blue-500 bg-white border border-gray-200 rounded-r-md hover:bg-blue-500  hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                投稿
+                              </button>
+                              <a href="{{ route('posts') }}"> 
+                                <button type="button" class="px-7 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                    一覧へ戻る
+                                </button>
+                              </a>
+                              <button type="reset" class="px-7 py-2 text-sm font-medium text-red-500 bg-white border border-gray-200 rounded-l-lg hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                リセット
+                              </button>
+                            </div>
                     </form>
                 </section>
             </div>
         </main>
+        
+       <script src="{{ asset('/js/function.js') }}"></script>
+        {{--<script> function displayImagePreview(event) {
+        const imagePreviewContainer = document.getElementById('image-preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const file = event.target.files[0];
+        console.log(file, imagePreviewContainer.style.display);
+        
+        if (file) {
+            console.log('show image');
+            const reader = new FileReader();
+    
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreviewContainer.style.display = 'block';
+            }
+    
+            reader.readAsDataURL(file);
+        } else {
+            console.log('hide image');
+            imagePreviewContainer.style.display = 'none';
+        }
+        }
+      }
+    </script>
+    --}}
     </body>
-
 </html>

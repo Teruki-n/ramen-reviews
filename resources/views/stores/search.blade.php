@@ -29,17 +29,16 @@
                     </form>
                 </div>
             
-                <div class="max-w-screen-lg mx-auto md:w-1/2 mt-6" x-data="{ open: false }">
+                <div class="max-w-screen-lg mx-auto w-fit mt-6" x-data="{ open: false }">
                     <div class="flex justify-end">
                         <button @click="open = !open" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700 w-1/2 md:w-1/4">
-                            <span x-show="!open" class="font-bold">＋</span>
-                            <span x-show="open" class="font-bold">－</span>
+                            <span class="font-bold" x-text="open ? '－' : '＋'"></span>
                             絞り込み
                         </button>
                     </div>
             
                     <div x-show="open">
-                        <div class="items-center justify-between p-2 bg-white border rounded shadow-sm">
+                        <div class="items-center justify-between  p-2 bg-white border rounded shadow-sm">
                             <div class="flex items-center space-x-4 ">
                                 <span class="text-bold text-gray-700">レビュー数:</span>
                                 <label class="flex items-center">
