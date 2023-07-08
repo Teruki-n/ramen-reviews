@@ -95,7 +95,7 @@
                             <!-- 画像アップロード -->
                             <div class="mb-4">
                                 <label class="text-gray-900 dark:text-gray-200" for="image">画像:</label>
-                                <input type="file" id="file" name="post[image]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none" accept="image/*">
+                                <input type="file" id="file" name="image_url" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none" accept="image/*">
                                 <img id="preview" src="{{ old('post.image', $post->image) }}" alt="Image preview" class="mt-2" style="max-width: 200px;"/>
                             </div>
                         

@@ -353,7 +353,7 @@
                         
                         
                         @foreach ($posts as $post)
-                            <div class="mt-14 grid grid-cols-1 gap-4">
+                            <div class="mt-14 grid grid-cols-1 gap-4" x-data="{ isOpen: false }">
                                 <div class="bg-white pb-8 pl-8 pr-8">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 self-start mr-6">
@@ -380,12 +380,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="bg-gray-100 p-4 rounded-md" style="margin-left: 5rem;">
-                                        <p class="text-base font-bold">レビュー: </p>{{ $post->comment }}
+                                    <div class="bg-gray-100 p-4 ml-20 rounded-md">
+                                        <p class="text-base font-bold">レビュー: </p>
+                                        <div x-ref="comment" :class="{ 'overflow-hidden h-12': !isOpen }">
+                                            {!! nl2br(e($post->comment)) !!}
+                                        </div>
                                     </div>
+                                    <div x-show="isOpen">
+                                        @if($post->image_url)
+                                            <div>
+                                                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    
                                     <div class="flex justify-between items-center mt-6">
                                         <p class="text-base font-semibold">{{ \Carbon\Carbon::parse($post->updated_at)->format('Y-m-d') }}</p>
-                                        <div class="text-indigo-500 cursor-pointer hover:text-indigo-600">全文表示</div>
+                                        <div class="text-indigo-500 cursor-pointer hover:text-indigo-600" @click="isOpen = !isOpen">
+                                             <span x-text="isOpen ? '閉じる' : '全文表示'"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -426,10 +439,4 @@
         </main>
     </body>
 </html>
-            {{--
-                    @if($post->image_url)
-                        <div>
-                            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
-                        </div>
-                    @endif
-                    --}}
+                    

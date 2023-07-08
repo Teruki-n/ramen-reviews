@@ -91,7 +91,7 @@
                             <!--comment-->
                             <div class="mb-4">
                                 <label class="text-gray-900 dark:text-gray-200" for="review">コメント:</label>
-                                <textarea id="textarea" type="textarea" rows="6" name="post[comment]" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none">{{ old('post.comment') }}</textarea>
+                                <textarea id="textarea" type="textarea" rows="6" name="post[comment]" onclick="check()" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none">{{ old('post.comment') }}</textarea>
                                 @error('post.comment')
                                     <div class="text-red-500 text-sm">{{ $message }}</div>
                                 @enderror
@@ -108,14 +108,9 @@
                                         <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                                         <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                                     </div>
-                                    <input id="dropzone-file" type="file" class="hidden" name="post[image_url]" onchange="displayImagePreview(event)" />
+                                    <input id="dropzone-file" type="file" name="image_url[]" {{--onchange="displayImagePreview(event)"--}} multiple/>
                                 </label>
                                 </div> 
-                                
-                                <!-- Element to display the selected image -->
-                                <div class="mt-4" id="image-preview-container" style="display: none;">
-                                    <img id="image-preview" src="" alt="Image preview" style="max-width: 800px; max-height: 400px;">
-                                </div>
                             </div>
                         
                             <div class="flex flex-row-reverse rounded-md shadow-sm mt-10"role="group">
@@ -137,29 +132,5 @@
         </main>
         
        <script src="{{ asset('/js/function.js') }}"></script>
-        {{--<script> function displayImagePreview(event) {
-        const imagePreviewContainer = document.getElementById('image-preview-container');
-        const imagePreview = document.getElementById('image-preview');
-        const file = event.target.files[0];
-        console.log(file, imagePreviewContainer.style.display);
-        
-        if (file) {
-            console.log('show image');
-            const reader = new FileReader();
-    
-            reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-                imagePreviewContainer.style.display = 'block';
-            }
-    
-            reader.readAsDataURL(file);
-        } else {
-            console.log('hide image');
-            imagePreviewContainer.style.display = 'none';
-        }
-        }
-      }
-    </script>
-    --}}
     </body>
 </html>

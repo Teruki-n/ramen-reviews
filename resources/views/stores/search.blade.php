@@ -29,7 +29,7 @@
                     </form>
                 </div>
             
-                <div class="max-w-screen-lg mx-auto w-fit mt-6" x-data="{ open: false }">
+                <div class="max-w-screen-lg mx-auto w-2/5 mt-6" x-data="{ open: false }">
                     <div class="flex justify-end">
                         <button @click="open = !open" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-700 w-1/2 md:w-1/4">
                             <span class="font-bold" x-text="open ? '－' : '＋'"></span>

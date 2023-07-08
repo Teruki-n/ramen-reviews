@@ -19,13 +19,13 @@
                     </h2>
                     
                     @foreach ($posts as $post)
-                        <div class="mt-14 grid grid-cols-1 gap-4">
+                        <div class="mt-14 grid grid-cols-1 gap-4" x-data="{ isOpen: false }">
                             <div class="relative bg-white pb-8 pl-8 pr-8">
                                 {{--accordion menu--}}
                                 <div class="absolute top-0 right-0 p-4" x-data="{ isOpen: false }">
                                     <div @click="isOpen = !isOpen" class="cursor-pointer font-bold text-xl mb-2">・・・</div>
                                     <div x-show="isOpen" id="options_{{ $post->id }}" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" 
-                                    x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" id="options_{{ $post->id }}" class="absolute top-0 right-0 mt-10 bg-white rounded-lg shadow-lg z-0 p-3 w-36 border border-gray-200">
+                                    x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" id="options_{{ $post->id }}" class="absolute top-0 right-0 mt-10 bg-white rounded-lg shadow-lg z-0 p-3 w-28 border border-gray-200">
                                         <div class="text-indigo-500 mb-1 hover:text-indigo-200"><a href="/posts/{{ $post->id }}/edit">編集する<i class="fas fa-pencil-alt"></i></a></div>
                                         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" clas="mt-1">
                                             @csrf
@@ -61,13 +61,27 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="bg-gray-100 p-4 rounded-md" style="margin-left: 5rem;">
-                                        <p class="text-base font-bold">レビュー: </p>{{ $post->comment }}
+                                        <p class="text-base font-bold">レビュー: </p>
+                                        <div x-ref="comment" :class="{ 'overflow-hidden h-12': !isOpen }" class="leading-snug">
+                                             {!! nl2br(e($post->comment)) !!}
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex justify-between items-center mt-6">
-                                    <p class="text-base font-semibold">{{ \Carbon\Carbon::parse($post->created_at)->format('Y-m-d') }}</p>
-                                    <div class="text-indigo-500 cursor-pointer hover:text-indigo-600">全文表示</div>
+                                    <div x-show="isOpen">
+                                        @if($post->image_url)
+                                            <div>
+                                                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    
+                                    <div class="flex justify-between items-center mt-6">
+                                        <p class="text-base font-semibold">{{ \Carbon\Carbon::parse($post->updated_at)->format('Y-m-d') }}</p>
+                                        <div class="text-indigo-500 ml-auto cursor-pointer hover:text-indigo-600" @click="isOpen = !isOpen">
+                                             <span x-text="isOpen ? '閉じる' : '全文表示'"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

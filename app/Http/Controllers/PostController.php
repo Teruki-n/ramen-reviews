@@ -42,58 +42,34 @@ class PostController extends Controller
             'post.pref'=>['required'],
             'post.rating'=>['required'],
             'post.comment'=>['min:20','max:1000'],
+            'image_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         
         $input =$request['post'];
         $input['user_id'] = auth()->id();
          //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入
-        if($request->file('image_url')){
-            $image_url = Cloudinary::upload($request->file('image_url')->getRealPath())->getSecurePath();
-            $input += ['image_url' => $image_url];
-        }
-        $post->fill($input)->save();
-        return redirect('/posts');
-    }
-
-
-    public function show(Request $request)
-    {
-        //
-    }
-
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+         if($request->hasfile('image_url')) {
+                foreach($request->file('image_url') as $file)
+                {
+                    $image_url = Cloudinary::upload($file->getRealPath())->getSecurePath();
+                    $input['image_url'] = $image_url; // each image url is assigned here
+                    $post->fill($input)->save(); // a new post is saved for each image
+                }
+            } else {
+                $post->fill($input)->save(); // if no image, save post once
+            }
+            
+            return redirect('/posts');
     }
 }
+
+   
+        // $input =$request['post'];
+        // $input['user_id'] = auth()->id();
+        //  //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入
+        // if($request->file('image_url')){
+        //     $image_url = Cloudinary::upload($request->file('image_url')->getRealPath())->getSecurePath();
+        //     $input += ['image_url' => $image_url];
+        // }
+        // $post->fill($input)->save();
+        // return redirect('/posts');

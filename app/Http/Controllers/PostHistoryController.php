@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use cloudinary;
+use Cloudinary;
 use Illuminate\Support\Facades\Auth;
 
 class PostHistoryController extends Controller
@@ -25,6 +25,10 @@ class PostHistoryController extends Controller
     public function update(Request $request,Post $post)
     {
         $input_post = $request['post'];
+        if($request->file('image_url')){
+            $image_url = Cloudinary::upload($request->file('image_url')->getRealPath())->getSecurePath();
+            $input_post += ['image_url' => $image_url];
+        }
         $post->fill($input_post)->save();
         return redirect('posts/history');
     }
