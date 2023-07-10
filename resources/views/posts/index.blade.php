@@ -16,315 +16,317 @@
             <div class="flex">
                  <!--narrowing menue-->
                 <div class="w-52 ml-28 border border-slate-300 flex flex-col  p-4 space-y-4">
-                    <form action="" method="post">
-                        <div>
-                            <div class="ml-4">
-                                <button type="reset" class="px-5 py-2 text-sm font-medium text-red-500 bg-white border border-gray-400 rounded hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                    リセット
-                               </button>
+                    <div x-data="handler()">
+                        <form action="" method="post">
+                            <div>
+                                <div class="ml-4">
+                                    <button type="reset" class="px-5 py-2 text-sm font-medium text-red-500 bg-white border border-gray-400 rounded hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                        リセット
+                                   </button>
+                                </div>
+                                <dl>
+                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">種類</dt>
+                                    <dd class="space-y-2">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" value="ramen">
+                                            <span class="ml-2">ラーメン</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" value="dipping">
+                                            <span class="ml-2">つけ麺</span>
+                                        </label>
+                                        <label class="flex items-center">
+                                            <input type="checkbox" value="no_soup">
+                                            <span class="ml-2">汁なし</span>
+                                        </label>
+                                    </dd>
+                                </dl>
                             </div>
-                            <dl>
-                                <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">種類</dt>
-                                <dd class="space-y-2">
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="ramen">
-                                        <span class="ml-2">ラーメン</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="dipping">
-                                        <span class="ml-2">つけ麺</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="no_soup">
-                                        <span class="ml-2">汁なし</span>
-                                    </label>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div>
-                            <dl>
-                                <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">味</dt>
-                                <dd class="space-y-2">
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="soy">
-                                        <span class="ml-2">醤油</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="salt">
-                                        <span class="ml-2">味噌</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                    <input type="checkbox" value="miso">
-                                        <span class="ml-2">塩</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="tonkotsu">
-                                        <span class="ml-2">豚骨</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="tonkotsu_soy">
-                                        <span class="ml-2">魚介系</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="niboshi">
-                                        <span class="ml-2">煮干し</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="chicken">
-                                        <span class="ml-2">白湯</span>
-                                    </label>
+                            <div>
+                                <dl>
+                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">味</dt>
+                                    <dd class="space-y-2">
                                         <label class="flex items-center">
-                                        <input type="checkbox" value="tantan">
-                                        <span class="ml-2">担々麺</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="house">
-                                        <span class="ml-2">家系</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="merchandise_sets">
-                                        <span class="ml-2">二郎</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="merchandise_sets">
-                                        <span class="ml-2">その他</span>
-                                    </label>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div>
-                            <dl>
-                                <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">都道府県</dt>
-                                <dd class="flex space-y-2">
-                                    <div class="space-y-2 w-1/2 mr-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="hokkaidou">
-                                            <span class="ml-2">北海道</span>
+                                            <input type="checkbox" value="soy">
+                                            <span class="ml-2">醤油</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="aomori">
-                                            <span class="ml-2">青森</span>
+                                            <input type="checkbox" value="salt">
+                                            <span class="ml-2">味噌</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="iwate">
-                                            <span class="ml-2">岩手</span>
+                                        <input type="checkbox" value="miso">
+                                            <span class="ml-2">塩</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="miyagi">
-                                            <span class="ml-2">宮城</span>
+                                            <input type="checkbox" value="tonkotsu">
+                                            <span class="ml-2">豚骨</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="akita">
-                                            <span class="ml-2">秋田</span>
+                                            <input type="checkbox" value="gyokai">
+                                            <span class="ml-2">魚介系</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="yamagata">
-                                            <span class="ml-2">山形</span>
+                                            <input type="checkbox" value="niboshi">
+                                            <span class="ml-2">煮干し</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="fukushima">
-                                            <span class="ml-2">福島</span>
+                                            <input type="checkbox" value="chicken">
+                                            <span class="ml-2">白湯</span>
+                                        </label>
+                                            <label class="flex items-center">
+                                            <input type="checkbox" value="tantan">
+                                            <span class="ml-2">担々麺</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="ibaraki">
-                                            <span class="ml-2">茨城</span>
+                                            <input type="checkbox" value="iekei">
+                                            <span class="ml-2">家系</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="tochigi">
-                                            <span class="ml-2">栃木</span>
+                                            <input type="checkbox" value="jiro">
+                                            <span class="ml-2">二郎</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="gunma">
-                                            <span class="ml-2">群馬</span>
+                                            <input type="checkbox" value="others">
+                                            <span class="ml-2">その他</span>
+                                        </label>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div>
+                                <dl>
+                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">都道府県</dt>
+                                    <dd class="flex space-y-2">
+                                        <div class="space-y-2 w-1/2 mr-2">
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="hokkaidou">
+                                                <span class="ml-2">北海道</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="aomori">
+                                                <span class="ml-2">青森</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="iwate">
+                                                <span class="ml-2">岩手</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="miyagi">
+                                                <span class="ml-2">宮城</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="akita">
+                                                <span class="ml-2">秋田</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="yamagata">
+                                                <span class="ml-2">山形</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="fukushima">
+                                                <span class="ml-2">福島</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="ibaraki">
+                                                <span class="ml-2">茨城</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="tochigi">
+                                                <span class="ml-2">栃木</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="gunma">
+                                                <span class="ml-2">群馬</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="saitama">
+                                                <span class="ml-2">埼玉</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="chiba">
+                                                <span class="ml-2">千葉</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="tokyo">
+                                                <span class="ml-2">東京</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="kanagawa">
+                                                <span class="ml-2">神奈川</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="niigata">
+                                                <span class="ml-2">新潟</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="toyama">
+                                                <span class="ml-2">富山</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="ishikawa">
+                                                <span class="ml-2">石川</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="fukui">
+                                                <span class="ml-2">福井</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="yamanashi">
+                                                <span class="ml-2">山梨</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="nagano">
+                                                <span class="ml-2">長野</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="gifu">
+                                                <span class="ml-2">岐阜</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="shizuoka">
+                                                <span class="ml-2">静岡</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="aichi">
+                                                <span class="ml-2">愛知</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="mie">
+                                                <span class="ml-2">三重</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="shiga">
+                                                <span class="ml-2">滋賀</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="kyoto">
+                                                <span class="ml-2">京都</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="osaka">
+                                                <span class="ml-2">大阪</span>
+                                            </label>
+                                        </div>
+                                        <div class="space-y-2 w-1/2"> 
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="hyogo">
+                                                <span class="ml-2">兵庫</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="nara">
+                                                <span class="ml-2">奈良</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="wakayama">
+                                                <span class="ml-2">和歌山</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="tottori">
+                                                <span class="ml-2">鳥取</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="shimane">
+                                                <span class="ml-2">島根</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="okayama">
+                                                <span class="ml-2">岡山</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="hiroshima">
+                                                <span class="ml-2">広島</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="yamaguchi">
+                                                <span class="ml-2">山口</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="tokushima">
+                                                <span class="ml-2">徳島</span>
+                                            </label>
+                                        
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="kagawa">
+                                                <span class="ml-2">香川</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="ehime">
+                                                <span class="ml-2">愛媛</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="kochi">
+                                                <span class="ml-2">高知</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="fukuoka">
+                                                <span class="ml-2">福岡</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="saga">
+                                                <span class="ml-2">佐賀</span>
+                                            </label>
+                                            <label class="flex items-center"> 
+                                                <input type="checkbox" value="nagasaki">
+                                                <span class="ml-2">長崎</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="kumamoto">
+                                                <span class="ml-2">熊本</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="oita">
+                                                <span class="ml-2">大分</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="miyazaki">
+                                                <span class="ml-2">宮崎</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="kagoshima">
+                                                <span class="ml-2">鹿児島</span>
+                                            </label>
+                                            <label class="flex items-center">
+                                                <input type="checkbox" value="okinawa">
+                                                <span class="ml-2">沖縄</span>
+                                            </label>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div>
+                                <dl>
+                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">おいしさ</dt>
+                                    <dd class="space-y-2">
+                                        <label class="flex items-center">
+                                            <input type="checkbox" value="1">
+                                            <span class="ml-2">★1</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="saitama">
-                                            <span class="ml-2">埼玉</span>
+                                            <input type="checkbox" value="2">
+                                            <span class="ml-2">★2</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="chiba">
-                                            <span class="ml-2">千葉</span>
+                                            <input type="checkbox" value="3">
+                                            <span class="ml-2">★3</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="tokyo">
-                                            <span class="ml-2">東京</span>
+                                            <input type="checkbox" value="4">
+                                            <span class="ml-2">★4</span>
                                         </label>
                                         <label class="flex items-center">
-                                            <input type="checkbox" value="kanagawa">
-                                            <span class="ml-2">神奈川</span>
+                                            <input type="checkbox" value="5">
+                                            <span class="ml-2">★5</span>
                                         </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="niigata">
-                                            <span class="ml-2">新潟</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="toyama">
-                                            <span class="ml-2">富山</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="ishikawa">
-                                            <span class="ml-2">石川</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="fukui">
-                                            <span class="ml-2">福井</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="yamanashi">
-                                            <span class="ml-2">山梨</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="nagano">
-                                            <span class="ml-2">長野</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="gifu">
-                                            <span class="ml-2">岐阜</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="shizuoka">
-                                            <span class="ml-2">静岡</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="aichi">
-                                            <span class="ml-2">愛知</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="mie">
-                                            <span class="ml-2">三重</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="shiga">
-                                            <span class="ml-2">滋賀</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="kyoto">
-                                            <span class="ml-2">京都</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="osaka">
-                                            <span class="ml-2">大阪</span>
-                                        </label>
-                                    </div>
-                                    <div class="space-y-2 w-1/2"> 
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="hyogo">
-                                            <span class="ml-2">兵庫</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="nara">
-                                            <span class="ml-2">奈良</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="wakayama">
-                                            <span class="ml-2">和歌山</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="tottori">
-                                            <span class="ml-2">鳥取</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="shimane">
-                                            <span class="ml-2">島根</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="okayama">
-                                            <span class="ml-2">岡山</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="hiroshima">
-                                            <span class="ml-2">広島</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="yamaguchi">
-                                            <span class="ml-2">山口</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="tokushima">
-                                            <span class="ml-2">徳島</span>
-                                        </label>
-                                    
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="kagawa">
-                                            <span class="ml-2">香川</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="ehime">
-                                            <span class="ml-2">愛媛</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="kochi">
-                                            <span class="ml-2">高知</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="fukuoka">
-                                            <span class="ml-2">福岡</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="saga">
-                                            <span class="ml-2">佐賀</span>
-                                        </label>
-                                        <label class="flex items-center"> 
-                                            <input type="checkbox" value="nagasaki">
-                                            <span class="ml-2">長崎</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="kumamoto">
-                                            <span class="ml-2">熊本</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="oita">
-                                            <span class="ml-2">大分</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="miyazaki">
-                                            <span class="ml-2">宮崎</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="kagoshima">
-                                            <span class="ml-2">鹿児島</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" value="okinawa">
-                                            <span class="ml-2">沖縄</span>
-                                        </label>
-                                    </div>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div>
-                            <dl>
-                                <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">おいしさ</dt>
-                                <dd class="space-y-2">
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="1">
-                                        <span class="ml-2">★1</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="2">
-                                        <span class="ml-2">★2</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="3">
-                                        <span class="ml-2">★3</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="4">
-                                        <span class="ml-2">★4</span>
-                                    </label>
-                                    <label class="flex items-center">
-                                        <input type="checkbox" value="5">
-                                        <span class="ml-2">★5</span>
-                                    </label>
-                                </dd>
-                            </dl>
-                            <div  class="ml-4 mt-4">
-                                <button type="reset" class="px-5 py-2 text-sm font-medium text-red-500 bg-white border border-gray-400 rounded hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                    リセット
-                               </button>
-                           </div>
-                        </div>
-                    </form>
+                                    </dd>
+                                </dl>
+                                <div  class="ml-4 mt-4">
+                                    <button type="reset" class="px-5 py-2 text-sm font-medium text-red-500 bg-white border border-gray-400 rounded hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                                        リセット
+                                   </button>
+                               </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 
                  <!--review content-->
@@ -353,7 +355,7 @@
                         
                         
                         @foreach ($posts as $post)
-                            <div class="mt-14 grid grid-cols-1 gap-4" x-data="{ isOpen: false }">
+                            <div class="mt-14 grid grid-cols-1 gap-4"  x-data="{  isOpen: false, showFullTextButton: '{{ substr_count(nl2br(e($post->comment)), '<br />') > 1 || $post->image_url || strlen($post->comment) > 225 }}' }">
                                 <div class="bg-white pb-8 pl-8 pr-8">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 self-start mr-6">
@@ -386,15 +388,18 @@
                                             {!! nl2br(e($post->comment)) !!}
                                         </div>
                                     </div>
-                                    <div x-show="isOpen">
-                                        @if($post->image_url)
-                                            <div>
-                                                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                                    <div x-show="isOpen" class="flex flex-wrap">
+                                        @if(!empty($post->image_url))
+                                            @foreach($post->image_url as $image)
+                                            <div class="mt-10 ml-10 w-40 h-40 overflow-hidden relative">
+                                                <a href="{{ $image }}" target="_blank">
+                                                    <img src="{{ $image }}" alt="画像が読み込めません。">
+                                                </a>
                                             </div>
+                                            @endforeach
                                         @endif
                                     </div>
-                                    
-                                    <div class="flex justify-between items-center mt-6">
+                                    <div class="flex justify-between items-center mt-6" x-show="showFullTextButton">
                                         <p class="text-base font-semibold">{{ \Carbon\Carbon::parse($post->updated_at)->format('Y-m-d') }}</p>
                                         <div class="text-indigo-500 cursor-pointer hover:text-indigo-600" @click="isOpen = !isOpen">
                                              <span x-text="isOpen ? '閉じる' : '全文表示'"></span>

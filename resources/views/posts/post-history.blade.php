@@ -12,14 +12,14 @@
         <!--header-->
         <x-header />
         <!--content-->
-         <section class="bg-gray-100 mx-32">
+        <section class="bg-gray-100 mx-32">
             <div class="max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
                     <h2 class="p-3 text-center text-white text-2xl font-bold tracking-tight bg-slate-950">
                       レビュー投稿履歴
                     </h2>
                     
                     @foreach ($posts as $post)
-                        <div class="mt-14 grid grid-cols-1 gap-4" x-data="{ isOpen: false }">
+                        <div class="mt-14 grid grid-cols-1 gap-4" x-data="{ isOpen: false, showFullTextButton: '{{ substr_count(nl2br(e($post->comment)), '<br />') > 1 || $post->image_url || strlen($post->comment) > 225 }}'  }">
                             <div class="relative bg-white pb-8 pl-8 pr-8">
                                 {{--accordion menu--}}
                                 <div class="absolute top-0 right-0 p-4" x-data="{ isOpen: false }">
@@ -68,15 +68,18 @@
                                              {!! nl2br(e($post->comment)) !!}
                                         </div>
                                     </div>
-                                    <div x-show="isOpen">
-                                        @if($post->image_url)
-                                            <div>
-                                                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                                    <div x-show="isOpen" class="flex flex-wrap">
+                                        @if(!empty($post->image_url))
+                                            @foreach($post->image_url as $image)
+                                            <div class="mt-10 ml-14 w-40 h-40 overflow-hidden relative">
+                                                <a href="{{ $image }}" target="_blank">
+                                                    <img src="{{ $image }}" alt="画像が読み込めません。">
+                                                </a>
                                             </div>
+                                            @endforeach
                                         @endif
                                     </div>
-                                    
-                                    <div class="flex justify-between items-center mt-6">
+                                    <div class="flex justify-between items-center mt-6" x-show="showFullTextButton">
                                         <p class="text-base font-semibold">{{ \Carbon\Carbon::parse($post->updated_at)->format('Y-m-d') }}</p>
                                         <div class="text-indigo-500 ml-auto cursor-pointer hover:text-indigo-600" @click="isOpen = !isOpen">
                                              <span x-text="isOpen ? '閉じる' : '全文表示'"></span>
@@ -93,7 +96,5 @@
                 </div>
             </div>
          </section>
-         
-         <script src="{{ asset('/js/function.js') }}"></script>
     </body>
 </html>

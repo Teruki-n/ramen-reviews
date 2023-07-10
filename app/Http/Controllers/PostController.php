@@ -35,7 +35,7 @@ class PostController extends Controller
 
     public function store(Request $request, Post $post)
     {
-        //投稿作成のバリデーション
+        //validation
         $validatedData = $request->validate([
             'post.taste'=>['required'],
             'post.kind'=>['required'],
@@ -47,29 +47,21 @@ class PostController extends Controller
         
         $input =$request['post'];
         $input['user_id'] = auth()->id();
-         //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入
-         if($request->hasfile('image_url')) {
-                foreach($request->file('image_url') as $file)
-                {
-                    $image_url = Cloudinary::upload($file->getRealPath())->getSecurePath();
-                    $input['image_url'] = $image_url; // each image url is assigned here
-                    $post->fill($input)->save(); // a new post is saved for each image
-                }
-            } else {
-                $post->fill($input)->save(); // if no image, save post once
+        
+        $input['image_url'] = []; // Initialize the image_url field as an array
+        
+        if($request->hasfile('image_url')) {
+            foreach($request->file('image_url') as $file)
+            {
+                $image_url = Cloudinary::upload($file->getRealPath())->getSecurePath();
+                array_push($input['image_url'], $image_url); // Add the image url to the image_url field
             }
-            
-            return redirect('/posts');
+        }
+        
+        $post->fill($input)->save(); // Save the post once, regardless of the number of images
+        
+        return redirect('/posts');
     }
 }
 
    
-        // $input =$request['post'];
-        // $input['user_id'] = auth()->id();
-        //  //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入
-        // if($request->file('image_url')){
-        //     $image_url = Cloudinary::upload($request->file('image_url')->getRealPath())->getSecurePath();
-        //     $input += ['image_url' => $image_url];
-        // }
-        // $post->fill($input)->save();
-        // return redirect('/posts');

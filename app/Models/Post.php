@@ -26,7 +26,9 @@ class Post extends Model
     'image_url',
     ];
 
-
+    protected $casts = [
+        'image_url' => 'array'
+    ];
 
     public function user()
     {

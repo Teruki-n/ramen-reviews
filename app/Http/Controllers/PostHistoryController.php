@@ -24,11 +24,18 @@ class PostHistoryController extends Controller
     
     public function update(Request $request,Post $post)
     {
-        $input_post = $request['post'];
-        if($request->file('image_url')){
-            $image_url = Cloudinary::upload($request->file('image_url')->getRealPath())->getSecurePath();
-            $input_post += ['image_url' => $image_url];
+        $input_post = $request->input('post');
+
+        $input_post['image_url'] = []; // Initialize the image_url field as an array
+        
+        if($request->hasfile('image_url')) {
+            foreach($request->file('image_url') as $file)
+            {
+                $image_url = Cloudinary::upload($file->getRealPath())->getSecurePath();
+                array_push($input_post['image_url'], $image_url); // Add the image url to the image_url field
+            }
         }
+
         $post->fill($input_post)->save();
         return redirect('posts/history');
     }

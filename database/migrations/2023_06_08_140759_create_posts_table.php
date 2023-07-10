@@ -29,7 +29,7 @@ return new class extends Migration
                         '高知県', '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県','沖縄県'
                     ]);          
             $table->integer('rating');
-            $table->string('image_url')->nullable();
+            $table->text('image_url')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
