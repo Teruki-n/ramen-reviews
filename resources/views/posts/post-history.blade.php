@@ -18,7 +18,7 @@
                       レビュー投稿履歴
                     </h2>
                     
-                    @foreach ($posts as $post)
+                    @forelse ($posts as $post)
                         <div class="mt-14 grid grid-cols-1 gap-4" x-data="{ isOpen: false, showFullTextButton: '{{ substr_count(nl2br(e($post->comment)), '<br />') > 1 || $post->image_url || strlen($post->comment) > 225 }}'  }">
                             <div class="relative bg-white pb-8 pl-8 pr-8">
                                 {{--accordion menu--}}
@@ -30,7 +30,7 @@
                                         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" clas="mt-1">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" onclick="deletePost({{ $post->id }})" class="text-red-500 hover:text-red-300">削除する<i class="fas fa-trash"></i></button>
+                                            <button type="button" onclick = "deletePost({{ $post->id }})" class="mt-2 text-red-500 hover:text-red-300">削除する<i class="fas fa-trash"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -88,7 +88,9 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                    <p class="pt-20 text-center text-boldv text-xl text-red-500 ">まだ投稿履歴がありません</p>
+                    @endforelse
                     
                 <!--pagination-->
                 <div class="flex justify-center mt-12">
@@ -96,5 +98,6 @@
                 </div>
             </div>
          </section>
+        <script src="{{ asset('/js/function.js') }}"></script>
     </body>
 </html>

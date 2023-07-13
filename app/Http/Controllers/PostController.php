@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use Cloudinary;
 
@@ -26,12 +27,11 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
 
     }
-
+    
     public function create()
     {
         return view("posts.create");
     }
-
 
     public function store(Request $request, Post $post)
     {
@@ -62,6 +62,7 @@ class PostController extends Controller
         
         return redirect('/posts');
     }
+    
 }
 
    
