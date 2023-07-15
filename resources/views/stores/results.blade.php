@@ -52,6 +52,9 @@
                             </div>
                         </div>
                     @endforeach
+                        <div class="flex justify-center mt-12">
+                             {{ $details->links("pagination::bootstrap-5") }}
+                        </div>
                 </div>
             </section>
         </main>

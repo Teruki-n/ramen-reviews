@@ -64,7 +64,7 @@ class StoreController extends Controller
                 usleep(2000000); // wait 2 seconds
             }
         
-        } while ($nextPageToken && count($places) < 10); // Continue while there's a next page token 
+        } while ($nextPageToken && count($places) < 30); // Continue while there's a next page token 
         
         
         foreach($places as $place)
@@ -104,7 +104,7 @@ class StoreController extends Controller
              $store = Store::firstOrNew(['place_id' => $placeId]);
              $store->name = $detail['name'];
              $store->formatted_address = $detail['formatted_address'];
-             $store->opening_hours = isset($detail['opening_hours']['weekday_text']) ? implode(', ', $detail['opening_hours']['weekday_text']) : null;
+             $store->opening_hours = $detail['opening_hours']['weekday_text'];
              $store->reviews = json_encode($detail['reviews'] ?? []);
              $store->latitude = $detail['latitude'];
              $store->longitude = $detail['longitude'];
@@ -115,7 +115,27 @@ class StoreController extends Controller
             $details[] = $detail;
         }
         
-        dd($details);
-        return view('stores/results')->with(['places' => $places, 'details' => $details]);
+        Session::put('details', $details);
+        // get current page (use 1 as default)
+        $currentPage = LengthAwarePaginator::resolveCurrentPage() ?: 1;
+        
+        // items per page
+        $perPage = 5;
+    
+        // get item offset
+        $offset = ($currentPage * $perPage) - $perPage;
+    
+         // セッションからdetailsを取り出す
+        $details = Session::get('details');
+        
+        $detailsPaginator = new LengthAwarePaginator(
+            array_slice($details, $perPage * ($request->input('page', 1) - 1), $perPage, true),
+            count($details),
+            $perPage,
+            $request->input('page', 1),
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+    
+        return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator]);
     }
 }

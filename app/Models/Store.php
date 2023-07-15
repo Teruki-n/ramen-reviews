@@ -13,6 +13,10 @@ class Store extends Model
     
     protected $table = 'stores';
     
+    protected $casts = [
+        'opening_hours' => 'array',
+    ];
+    
     protected $fillable = [
         'place_id',
         'name',
