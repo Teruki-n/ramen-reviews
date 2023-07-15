@@ -11,10 +11,19 @@ class Store extends Model
 {
     use HasFactory;
     
-    public function getByLimit(int $limit_count = 50)
-    {
-        //
-    }
+    protected $table = 'stores';
+    
+    protected $fillable = [
+        'place_id',
+        'name',
+        'formatted_address',
+        'opening_hours',
+        'reviews',
+        'latitude',
+        'longitude',
+        'review_count',
+        'rating'
+    ];
     
     public function posts()
     {

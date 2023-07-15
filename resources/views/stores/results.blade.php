@@ -18,7 +18,7 @@
                     <div class="flex items-center justify-between space-x-8 mb-10">
                         <h2 class="text-4xl tracking-tight"> 店舗情報</h2>
                         <a href="{{ route('search') }}"> 
-                            <button type="button" class="px-7 py-2 text-sm font-medium bg-blue-500 hover:bg-blue-950 text-white font-bold py-2 px-4 rounded-full hover:bg-gray-100  focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                            <button type="button" class="px-7 py-2 text-sm font-medium bg-blue-500 hover:bg-blue-950 text-white font-bold py-2 px-4 rounded-full focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                                 検索画面へ戻る
                             </button>
                         </a>
@@ -27,7 +27,7 @@
                         <div class="flex flex-wrap mt-10 bg-neutral-100">
                             <div class="w-1/2 p-6">
                                 <p class="text-xl my-8">
-                                    <span class="font-bold">店舗名:</span>
+                                    <span class="font-bold ">店舗名:</span>
                                     <span>{{ $detail["name"] }}</span>
                                 </p>
                                 <p class="text-xl my-8">
@@ -35,7 +35,7 @@
                                     <span>{{ $detail["formatted_address"] }}</span>
                                 </p>
                                 <p class="text-xl my-8">
-                                    <span class="font-bold">営業時間:</span>
+                                    <p class="font-bold">営業時間:</p>
                                     @foreach ($detail['opening_hours']['weekday_text'] as $day_hours)
                                         <span>{{ $day_hours }}</span><br>
                                     @endforeach
@@ -46,7 +46,7 @@
                                  <p class="text-xl font-bold">Googleの口コミ抜粋:</p>
                                 @foreach ($detail['reviews'] as $review)
                                     <div>
-                                        <p>{{ $review['text'] }}</p>
+                                        <p>〇{{ optional($review)['text'] }}</p><br>
                                     </div>
                                 @endforeach
                             </div>

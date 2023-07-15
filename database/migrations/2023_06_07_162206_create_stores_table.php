@@ -17,11 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('place_id')->unique();
             $table->string('name');
-            $table->string('address');
+            $table->string('formatted_address');
             $table->string('opening_hours');
-            $table->string('google_maps_url');
+            $table->text('reviews');
+            $table->decimal('latitude');
+            $table->decimal('longitude');
             $table->integer('review_count');
-            $table->float('rating');
+            $table->decimal('rating');
             $table->timestamps();
         });
     }
