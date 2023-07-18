@@ -147,14 +147,13 @@ class StoreController extends Controller
          // get details from session.
         $details = Session::get('details');
         
-        
         $detailsPaginator = new LengthAwarePaginator(
-            array_slice($details, $perPage * ($request->input('page', 1) - 1), $perPage, true),
-            count($details),
-            $perPage,
-            $request->input('page', 1),
-            ['path' => $request->url(), 'query' => $request->query()]
-        );
+        array_slice($details, $perPage * ($request->input('page', 1) - 1), $perPage, true),
+        count($details),
+        $perPage,
+        $request->input('page', 1),
+        ['path' => $request->url(), 'query' => $request->query()]
+    );
         
         return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator]);
     }
