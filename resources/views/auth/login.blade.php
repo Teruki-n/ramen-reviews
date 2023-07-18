@@ -2,7 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="px-4 sm:px-6 md:px-8">
         @csrf
         <input type="hidden" name="previous" value="{{ $path ?? url('/') }}">　
         <!-- Email Address -->

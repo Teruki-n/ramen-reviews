@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Store;
+use App\Models\User;
 
 
 class StoreController extends Controller
@@ -22,6 +23,8 @@ class StoreController extends Controller
         
         $details = [];
         $places = [];
+        $reviewCountConditions = [];
+        $ratingConditions = [];
         $nextPageToken = null;
         
         do {
@@ -73,7 +76,7 @@ class StoreController extends Controller
             
             // Google Places APIのURLを構築
             $url = sprintf(
-                "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&language=ja&key=%s",
+                 "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,formatted_address,opening_hours,geometry/location,rating,user_ratings_total,reviews&language=ja&key=%s",
                  //"https://maps.googleapis.com/maps/api/place/details/json?place_id=%25s&fields=geometry/location&key=%25s", //座標
                 $placeId,
                 $apiKey
@@ -100,20 +103,36 @@ class StoreController extends Controller
                 $detail['longitude'] = $detail['geometry']['location']['lng'];
             }
             
-            //Stores data acquired via API in database
-             $store = Store::firstOrNew(['place_id' => $placeId]);
-             $store->name = $detail['name'];
-             $store->formatted_address = $detail['formatted_address'];
-             $store->opening_hours = $detail['opening_hours']['weekday_text'];
-             $store->reviews = json_encode($detail['reviews'] ?? []);
-             $store->latitude = $detail['latitude'];
-             $store->longitude = $detail['longitude'];
-             $store->review_count = $detail['user_ratings_total'] ?? 0;
-             $store->rating = $detail['rating'];
-             $store->save();
 
+            //Stores data acquired via API in database
+            $store = Store::firstOrNew(['place_id' => $placeId]);
+            $store->name = $detail['name'];
+            $store->formatted_address = $detail['formatted_address'];
+            $store->opening_hours = $detail['opening_hours']['weekday_text'];
+            $store->reviews = json_encode($detail['reviews'] ?? []);
+            $store->latitude = $detail['latitude'];
+            $store->longitude = $detail['longitude'];
+            $store->review_count = $detail['user_ratings_total'] ?? 0;
+            $store->rating = $detail['rating'] ?? 0;;
+            $store->save();
+            
             $details[] = $detail;
         }
+        
+        //データベースに入ったデータを取得し、それを使って絞り込みをしている
+        // $new_details = [];
+        // $review_count = $request->review_count;
+        // $review_count = explode('-', $review_count[0]);
+        // for($i = 0; $i < count($details); $i++)
+        // {
+        //     $total = $details[$i]["user_ratings_total"];
+        //     if(((int) $review_count[0]) < $total && $total < ((int) $review_count[1]))
+        //     {
+        //         $new_details[] = $details[$i];
+        //     }
+        // }
+     
+         
         
         Session::put('details', $details);
         // get current page (use 1 as default)
@@ -125,8 +144,9 @@ class StoreController extends Controller
         // get item offset
         $offset = ($currentPage * $perPage) - $perPage;
     
-         // セッションからdetailsを取り出す
+         // get details from session.
         $details = Session::get('details');
+        
         
         $detailsPaginator = new LengthAwarePaginator(
             array_slice($details, $perPage * ($request->input('page', 1) - 1), $perPage, true),
@@ -135,7 +155,7 @@ class StoreController extends Controller
             $request->input('page', 1),
             ['path' => $request->url(), 'query' => $request->query()]
         );
-    
+        
         return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator]);
     }
 }

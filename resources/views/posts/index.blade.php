@@ -13,319 +13,24 @@
         <x-header />
          <!--content-->
         <main>
-            <div class="flex">
-                 <!--narrowing menue-->
-                <div class="w-52 ml-28 border border-slate-300 flex flex-col  p-4 space-y-4">
-                    <div>
-                        <form action="" method="get">
-                            <div>
-                                <div class="ml-4">
-                                    <button type="reset" class="px-5 py-2 text-sm font-medium text-red-500 bg-white border border-gray-400 rounded hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                        リセット
-                                   </button>
-                                </div>
-                                <dl>
-                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">種類</dt>
-                                    <dd class="space-y-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="kind" name="kind[]" value="ラーメン" onchange="getFilteredPosts()">
-                                            <span class="ml-2">ラーメン</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="kind" name="kind[]" value="つけ麵" onchange="getFilteredPosts()">
-                                            <span class="ml-2">つけ麺</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="kind" name="kind[]" value="汁なし" onchange="getFilteredPosts()">
-                                            <span class="ml-2">汁なし</span>
-                                        </label>
-                                    </dd>
-                                </dl>
-                            </div>
-                            <div>
-                                <dl>
-                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">味</dt>
-                                    <dd class="space-y-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="醬油" onchange="getFilteredPosts()">
-                                            <span class="ml-2">醤油</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="味噌" onchange="getFilteredPosts()">
-                                            <span class="ml-2">味噌</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="塩" onchange="getFilteredPosts()">
-                                            <span class="ml-2">塩</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="豚骨" onchange="getFilteredPosts()">
-                                            <span class="ml-2">豚骨</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" vname="taste[]" data-filter-type="taste" value="魚介系" onchange="getFilteredPosts()">
-                                            <span class="ml-2">魚介系</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="煮干し" onchange="getFilteredPosts()">
-                                            <span class="ml-2">煮干し</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="白湯" onchange="getFilteredPosts()">
-                                            <span class="ml-2">白湯</span>
-                                        </label>
-                                            <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="担々麺" onchange="getFilteredPosts()">
-                                            <span class="ml-2">担々麺</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="家系" onchange="getFilteredPosts()">
-                                            <span class="ml-2">家系</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="二郎" onchange="getFilteredPosts()">
-                                            <span class="ml-2">二郎</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" name="taste[]" data-filter-type="taste" value="その他" onchange="getFilteredPosts()">
-                                            <span class="ml-2">その他</span>
-                                        </label>
-                                    </dd>
-                                </dl>
-                            </div>
-                            <div>
-                                <dl>
-                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">都道府県</dt>
-                                    <dd class="flex space-y-2">
-                                        <div class="space-y-2 w-1/2 mr-2">
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="北海道" onchange="getFilteredPosts()">
-                                                <span class="ml-2">北海道</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="青森" onchange="getFilteredPosts()">
-                                                <span class="ml-2">青森</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" vname="pref[]" data-filter-type="pref" value="岩手" onchange="getFilteredPosts()">
-                                                <span class="ml-2">岩手</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="宮城" onchange="getFilteredPosts()">
-                                                <span class="ml-2">宮城</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="秋田" onchange="getFilteredPosts()">
-                                                <span class="ml-2">秋田</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="山形" onchange="getFilteredPosts()">
-                                                <span class="ml-2">山形</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="福島" onchange="getFilteredPosts()">
-                                                <span class="ml-2">福島</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="茨城" onchange="getFilteredPosts()">
-                                                <span class="ml-2">茨城</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="栃木" onchange="getFilteredPosts()">
-                                                <span class="ml-2">栃木</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="群馬" onchange="getFilteredPosts()">
-                                                <span class="ml-2">群馬</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="埼玉" onchange="getFilteredPosts()">
-                                                <span class="ml-2">埼玉</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="千葉" onchange="getFilteredPosts()">
-                                                <span class="ml-2">千葉</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="東京" onchange="getFilteredPosts()">
-                                                <span class="ml-2">東京</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="神奈川" onchange="getFilteredPosts()">
-                                                <span class="ml-2">神奈川</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="新潟" onchange="getFilteredPosts()">
-                                                <span class="ml-2">新潟</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="富山" onchange="getFilteredPosts()">
-                                                <span class="ml-2">富山</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="石川" onchange="getFilteredPosts()">
-                                                <span class="ml-2">石川</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="福井" onchange="getFilteredPosts()">
-                                                <span class="ml-2">福井</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="山梨" onchange="getFilteredPosts()">
-                                                <span class="ml-2">山梨</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="長野" onchange="getFilteredPosts()">
-                                                <span class="ml-2">長野</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="岐阜" onchange="getFilteredPosts()">
-                                                <span class="ml-2">岐阜</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="静岡" onchange="getFilteredPosts()">
-                                                <span class="ml-2">静岡</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="愛知" onchange="getFilteredPosts()">
-                                                <span class="ml-2">愛知</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="三重" onchange="getFilteredPosts()">
-                                                <span class="ml-2">三重</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="滋賀" onchange="getFilteredPosts()">
-                                                <span class="ml-2">滋賀</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="京都" onchange="getFilteredPosts()">
-                                                <span class="ml-2">京都</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="大阪" onchange="getFilteredPosts()">
-                                                <span class="ml-2">大阪</span>
-                                            </label>
-                                        </div>
-                                        <div class="space-y-2 w-1/2"> 
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="兵庫" onchange="getFilteredPosts()">
-                                                <span class="ml-2">兵庫</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="奈良" onchange="getFilteredPosts()">
-                                                <span class="ml-2">奈良</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="和歌山" onchange="getFilteredPosts()">
-                                                <span class="ml-2">和歌山</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="鳥取" onchange="getFilteredPosts()">
-                                                <span class="ml-2">鳥取</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="島根" onchange="getFilteredPosts()">
-                                                <span class="ml-2">島根</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="岡山" onchange="getFilteredPosts()">
-                                                <span class="ml-2">岡山</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="広島" onchange="getFilteredPosts()">
-                                                <span class="ml-2">広島</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="山口" onchange="getFilteredPosts()">
-                                                <span class="ml-2">山口</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="徳島" onchange="getFilteredPosts()">
-                                                <span class="ml-2">徳島</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="香川" onchange="getFilteredPosts()">
-                                                <span class="ml-2">香川</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="愛媛" onchange="getFilteredPosts()">
-                                                <span class="ml-2">愛媛</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="高知" onchange="getFilteredPosts()">
-                                                <span class="ml-2">高知</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="福岡" onchange="getFilteredPosts()">
-                                                <span class="ml-2">福岡</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="佐賀" onchange="getFilteredPosts()">
-                                                <span class="ml-2">佐賀</span>
-                                            </label>
-                                            <label class="flex items-center"> 
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="長崎" onchange="getFilteredPosts()">
-                                                <span class="ml-2">長崎</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="熊本" onchange="getFilteredPosts()">
-                                                <span class="ml-2">熊本</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="大分" onchange="getFilteredPosts()">
-                                                <span class="ml-2">大分</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="宮崎" onchange="getFilteredPosts()">
-                                                <span class="ml-2">宮崎</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="鹿児島" onchange="getFilteredPosts()">
-                                                <span class="ml-2">鹿児島</span>
-                                            </label>
-                                            <label class="flex items-center">
-                                                <input type="checkbox" name="pref[]" data-filter-type="pref" value="沖縄" onchange="getFilteredPosts()">
-                                                <span class="ml-2">沖縄</span>
-                                            </label>
-                                        </div>
-                                    </dd>
-                                </dl>
-                            </div>
-                            <div>
-                                <dl>
-                                    <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">おいしさ</dt>
-                                    <dd class="space-y-2">
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="rating" name="rating[]" value="1" onchange="getFilteredPosts()">
-                                            <span class="ml-2">★1</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="rating" name="rating[]" value="2" onchange="getFilteredPosts()">
-                                            <span class="ml-2">★2</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="rating" name="rating[]" value="3" onchange="getFilteredPosts()">
-                                            <span class="ml-2">★3</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="rating" name="rating[]" value="4" onchange="getFilteredPosts()">
-                                            <span class="ml-2">★4</span>
-                                        </label>
-                                        <label class="flex items-center">
-                                            <input type="checkbox" data-filter-type="rating" name="rating[]" value="5" onchange="getFilteredPosts()">
-                                            <span class="ml-2">★5</span>
-                                        </label>
-                                    </dd>
-                                </dl>
-                                <div  class="ml-4 mt-4">
-                                    <button type="reset" class="px-5 py-2 text-sm font-medium text-red-500 bg-white border border-gray-400 rounded hover:bg-red-500 hover:text-white focus:z-10 focus:ring-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                                        リセット
-                                   </button>
-                               </div>
-                            </div>
-                        </form>
+            <div class="flex ">
+                 <!--narrowing menu-->
+                 <!-- Mobile Menu Button -->
+                <div class="lg:hidden block mt-4 px-10" x-data="{ open: false }">
+                    <button @click="open = !open" class="text-gray-600 hover:text-gray-500 focus:outline-none focus:text-gray-500">
+                        <svg viewBox="0 0 24 24" class="h-10 w-10 fill-current">
+                            <path fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                        </svg>
+                    </button>
+                
+                    <!-- Mobile Menu -->
+                    <div class="absolute bg-white overflow-y-scroll" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform -translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-300"  x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform -translate-x-full">
+                        <x-narrowing-menu/>
                     </div>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="lg:block hidden ml-28">
+                    <x-narrowing-menu />
                 </div>
                 
                  <!--review content-->
@@ -390,18 +95,20 @@
                                     <div x-show="isOpen" class="flex flex-wrap">
                                         @if(!empty($post->image_url))
                                             @foreach($post->image_url as $image)
-                                            <div class="mt-10 ml-10 w-40 h-40 overflow-hidden relative">
+                                            <div class="mt-10 ml-10 w-36 h-36 overflow-hidden relative">
                                                 <a href="{{ $image }}" target="_blank">
-                                                    <img src="{{ $image }}" alt="画像が読み込めません。">
+                                                    <img src="{{ $image }}" alt="画像が読み込めません。" class="w-full h-full object-cover">
                                                 </a>
                                             </div>
                                             @endforeach
                                         @endif
                                     </div>
-                                    <div class="flex justify-between items-center mt-6" x-show="showFullTextButton">
+                                    <div class="flex justify-between items-center mt-6">
                                         <p class="text-base font-semibold">{{ \Carbon\Carbon::parse($post->updated_at)->format('Y-m-d') }}</p>
-                                        <div class="text-indigo-500 cursor-pointer hover:text-indigo-600" @click="isOpen = !isOpen">
-                                             <span x-text="isOpen ? '閉じる' : '全文表示'"></span>
+                                        <div x-show="showFullTextButton">
+                                            <div class="text-indigo-500 cursor-pointer hover:text-indigo-600" @click="isOpen = !isOpen">
+                                                 <span x-text="isOpen ? '閉じる' : '全文表示'"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -443,7 +150,6 @@
                 </div>
             </div>
         </main>
-
     </body>
 </html>
                     

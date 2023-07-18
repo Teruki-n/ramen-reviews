@@ -12,7 +12,7 @@
         <!--header-->
         <x-header />
          <!--content-->
-        <main>
+        <main class="mx-auto max-w-screen-xl">
             <section class="m-20">
                 <div class="max-w-screen-2xl">
                     <div class="flex items-center justify-between space-x-8 mb-10">
@@ -46,19 +46,18 @@
                                  <p class="text-xl font-bold">Googleの口コミ抜粋:</p>
                                 @foreach ($detail['reviews'] as $review)
                                     <div>
-                                        <p>〇{{ optional($review)['text'] }}</p><br>
+                                        <p>●{{ optional($review)['text'] }}</p><br>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     @endforeach
-                        <div class="flex justify-center mt-12">
-                             {{ $details->links("pagination::bootstrap-5") }}
-                        </div>
+                    <div class="flex justify-center mt-12">
+                         {{ $details->links("pagination::bootstrap-5") }}
+                    </div>
                 </div>
             </section>
         </main>
-         
         <script src="{{ asset('/js/function.js') }}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_PLACES_API_KEY') }}&callback=initMap"></script>
     </body>

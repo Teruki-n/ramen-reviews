@@ -12,7 +12,7 @@ class PostHistoryController extends Controller
     public function index(Post $post)
     {
         $userId = Auth::id();
-        $posts = Post::where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(7);;
+        $posts = Post::where('user_id', $userId)->orderBy('created_at', 'desc')->paginate(10);;
         
         return view('posts.post-history',compact('posts'));
     }

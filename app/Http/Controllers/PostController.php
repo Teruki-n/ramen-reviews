@@ -22,7 +22,7 @@ class PostController extends Controller
             $query->where('name', 'like', '%' . $search . '%');
         }
     
-        $posts = $query->orderBy('updated_at', 'DESC')->paginate(7);
+        $posts = $query->orderBy('updated_at', 'DESC')->paginate(10);
     
         return view('posts.index', compact('posts'));
 

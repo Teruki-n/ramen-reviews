@@ -7,8 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\PostHistoryController;
 use App\Http\Controllers\TestController;
-
-
+use App\Http\Controllers\MyFavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,19 +34,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//test
-Route::get('/place',[TestController::class,'place']);
-
-Route::get('/review',[TestController::class,'review']);
-
-Route::get('/photo',[TestController::class,'photo']);
-
 
 Route::get('/',function(){
     return view('stores/search');
 })->name('search');
 
 Route::get('/results',[StoreController::class,'index'])->name('search.results');
+
+Route::get('/favorite', [MyFavoriteController::class, 'index'])->name('favorites');
 
 Route::get('posts',[PostController::class,'index'])->name('posts');
 
