@@ -12,15 +12,15 @@
         <!--header-->
         <x-header />
         <!--content-->
-        <section class="bg-gray-100">
-            <div class="mx-auto px-4 py-16 lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl sm:px-6 lg:px-8">
+        <section class="bg-gray-100 mx-32">
+            <div class="max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
                     <h2 class="p-3 text-center text-white text-2xl font-bold tracking-tight bg-slate-950">
                       レビュー投稿履歴
                     </h2>
                     
                     @forelse ($posts as $post)
-                        <div class="mt-14 grid grid-cols-1 gap-4 mx-auto" x-data="{ isOpen: false, showFullTextButton: '{{ substr_count(nl2br(e($post->comment)), '<br />') > 1 || $post->image_url || strlen($post->comment) > 225 }}'  }">
-                            <div class="relative bg-white pb-8 pl-8 pr-8 lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl">
+                        <div class="mt-14 grid grid-cols-1 gap-4" x-data="{ isOpen: false, showFullTextButton: '{{ substr_count(nl2br(e($post->comment)), '<br />') > 1 || $post->image_url || strlen($post->comment) > 225 }}'  }">
+                            <div class="relative bg-white pb-8 pl-8 pr-8">
                                 {{--accordion menu--}}
                                 <div class="absolute top-0 right-0 p-4" x-data="{ isOpen: false }">
                                     <div @click="isOpen = !isOpen" class="cursor-pointer font-bold text-xl mb-2">・・・</div>
@@ -71,9 +71,9 @@
                                     <div x-show="isOpen" class="flex flex-wrap">
                                         @if(!empty($post->image_url))
                                             @foreach($post->image_url as $image)
-                                            <div class="mt-10 ml-14 w-40 h-40 overflow-hidden relative">
+                                            <div class="mt-10 ml-14  w-36 h-36 overflow-hidden relative">
                                                 <a href="{{ $image }}" target="_blank">
-                                                    <img src="{{ $image }}" alt="画像が読み込めません。">
+                                                    <img src="{{ $image }}" alt="画像が読み込めません。" class="w-full h-full object-cover">
                                                 </a>
                                             </div>
                                             @endforeach
