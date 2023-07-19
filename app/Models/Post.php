@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
-// use App\Models\Store;
 
 
 class Post extends Model
@@ -35,12 +34,5 @@ class Post extends Model
         //1対多 userとpost
         return $this->belongsTo(User::class);    
     }
-    
-    //   public function store()
-    // {
-    //      //1対多 storeとpost
-    //     return $this->belongsTo(Store::class);    
-    // }
-
 }
 

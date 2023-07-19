@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Post;
 use App\Models\User;
 
 class Store extends Model
@@ -28,12 +27,6 @@ class Store extends Model
         'review_count',
         'rating'
     ];
-    
-    public function posts()
-    {
-         //1対多 storeとpost
-        return $this->hasmany(Post::class);
-    }
     
     public function users()
     {
