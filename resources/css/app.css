@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 /*star-rating*/
 .rate-form {
@@ -26,4 +26,9 @@
 }
 .rate-form input[type=radio]:checked ~ label {
   color: #ffcc00;
+<<<<<<< HEAD
 }
+
+=======
+}
+>>>>>>> master

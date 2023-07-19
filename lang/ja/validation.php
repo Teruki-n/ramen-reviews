@@ -159,6 +159,8 @@ return [
     'post.kind'=>'"種類"',
     'post.pref'=>'"都道府県"',
     'post.rating'=>'"おいしさ"',
+    'post.comment'=>'文字数',
+    'name'=>'ユーザー名',
     ],
 
 ];

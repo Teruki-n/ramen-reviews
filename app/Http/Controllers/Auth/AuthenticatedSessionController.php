@@ -17,7 +17,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        $url = url()->previous();
+        $previousUrl = parse_url($url);
+        $path =  $previousUrl['path'];
+        return view('auth.login',compact('path'));
     }
 
     /**
@@ -29,13 +32,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        
-        // リファラーヘッダーを取得
-        $redirectTo = $request->headers->get('referer');
-    
-        // intendedメソッドを使って、以前のページにリダイレクトするか、
-        // セッションにリダイレクト先がない場合はリファラーかデフォルトのURLにリダイレクトします。
-        return redirect()->intended($redirectTo ?? '/search');
+        $path = $request['previous'];
+        return redirect($path);
     }
 
     /**

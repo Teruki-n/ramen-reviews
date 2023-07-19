@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\PostHistoryController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\MyFavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,12 +40,21 @@ Route::get('/',function(){
 
 Route::get('/results',[StoreController::class,'index'])->name('search.results');
 
-Route::get('/posts',[PostController::class,'index']);
+Route::get('/favorite', [MyFavoriteController::class, 'index'])->name('favorites');
 
-Route::get('/posts/create',[PostController::class,'create'])->name('posts.create')->middleware('auth');
+Route::get('posts',[PostController::class,'index'])->name('posts');
 
-Route::post('/posts',[PostController::class,'store']);
+Route::get('posts/create',[PostController::class,'create'])->name('posts.create')->middleware('auth');
 
-Route::get('/posts',[PostController::class,'show'])->name('posts');
+Route::post('posts',[PostController::class,'store']);
+
+Route::get('posts/history', [PostHistoryController::class,'index'])->name('history')->middleware('auth');
+
+Route::get('posts/{post}/edit',[PostHistoryController::class,'edit']);
+
+Route::put('posts/{post}', [PostHistoryController::class, 'update']);
+
+Route::delete('posts/{post}', [PostHistoryController::class, 'destroy']);
+
 
 require __DIR__.'/auth.php';
