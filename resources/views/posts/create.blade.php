@@ -150,7 +150,6 @@
                 </section>
             </div>
         </main>
-        
        <script src="{{ asset('/js/function.js') }}"></script>
     </body>
 </html>

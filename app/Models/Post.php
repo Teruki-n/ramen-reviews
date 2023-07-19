@@ -34,5 +34,6 @@ class Post extends Model
         //1対多 userとpost
         return $this->belongsTo(User::class);    
     }
+
 }
 
