@@ -57,10 +57,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Store::class);
     }
 
-    public function favorites()
-    {
-        return $this->hasMany(Favorite::class);
-    }
+    // public function favorites()
+    // {
+    //     return $this->hasMany(Favorite::class);
+    // }
     
 
 }
