@@ -121,6 +121,11 @@
                         <div class="flex justify-center mt-12">
                             {{ $posts->links("pagination::bootstrap-5") }}
                         </div>
+                        
+                        <div id="no-posts-message" class="hidden pt-20 text-center text-bold text-xl text-red-500">
+                           <p>該当する投稿がまだありません。</p> 
+                           <p>恐れいりますが、絞り込む項目を変えて再度検索してください。</p>
+                        </div>
                     </div>
                 </section>
 

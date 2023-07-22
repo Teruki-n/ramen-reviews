@@ -1,3 +1,4 @@
+  
     // 全てのチェックボックスの変更イベントをキャプチャする
     const checkboxes = document.querySelectorAll('input[type=checkbox]');
     checkboxes.forEach(checkbox => {
@@ -16,7 +17,9 @@
             groups[checkbox.dataset.filterType].push(checkbox);
             return groups;
         }, {});
-    
+        
+        let hasPosts = false;
+         
         posts.forEach(post => {
             const satisfiesAllFilters = Object.values(filterGroups)
                 .every(group => {
@@ -34,10 +37,18 @@
     
             if (satisfiesAllFilters) {
                 post.classList.remove('hidden');
+                hasPosts = true;
             } else {
                 post.classList.add('hidden');
             }
         });
+        
+        const noPostsMessage = document.getElementById('no-posts-message');
+        if (hasPosts) {
+            noPostsMessage.classList.add('hidden');
+        } else {
+            noPostsMessage.classList.remove('hidden');
+        }
     }
         
         
