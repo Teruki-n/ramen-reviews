@@ -23,9 +23,27 @@
                             </button>
                         </a>
                     </div>
-                    @foreach ($details as $detail)
+                    @forelse ($details as $detail)
                         <div class="flex flex-wrap mt-10 bg-neutral-100">
                             <div class="w-1/2 p-6">
+                            
+                            {{--
+                            <div class="col-md-3">
+                                <form action="{{ route('favorites.add') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="store_id" value="{{ $store->id }}">
+                                    <input type="submit" value="&#xf164;いいね">
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <form action="{{ route('favorites.remove') }}"method="post">
+                                    @csrf
+                                    <input type="hidden" name="store_id" value="{{ $store->id }}">
+                                    <input type="submit" value="&#xf164;いいねを取り消す">
+                                </form>
+                            </div>
+                            --}}
+                                
                                 <p class="text-xl my-8">
                                     <span class="font-bold ">店舗名:</span>
                                     <span>{{ $detail["name"] }}</span>
@@ -51,7 +69,22 @@
                                 @endforeach
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="container mx-auto px-4 py-5">
+                            <div class="bg-white max-w-lg mx-auto rounded shadow-lg p-6">
+                                <div class="mb-4">
+                                    <h1 class="text-2xl font-bold text-center">検索結果</h1>
+                                </div>
+                                <div class="flex flex-col justify-center items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-12 w-12 text-red-500 mb-4">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                    <p class="text-red-500 text-center">申し訳ありませんが、該当する結果が見つかりませんでした。</p>
+                                    <p class="text-red-500 text-center">絞り込む項目を変えて、再度検索してください。</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforelse
                     <div class="flex justify-center mt-12">
                          {{ $details->links("pagination::bootstrap-5") }}
                     </div>

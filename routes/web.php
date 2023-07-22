@@ -42,6 +42,10 @@ Route::get('/results',[StoreController::class,'index'])->name('search.results');
 
 Route::get('/favorite', [MyFavoriteController::class, 'index'])->name('favorites');
 
+// Route::post('/favorite/add', [MyFavoriteController::class, 'add'])->name('favorites.add');
+
+// Route::post('/favorite/remove', [MyFavoriteController::class, 'remove'])->name('favorites.remove');
+
 Route::get('posts',[PostController::class,'index'])->name('posts');
 
 Route::get('posts/create',[PostController::class,'create'])->name('posts.create')->middleware('auth');

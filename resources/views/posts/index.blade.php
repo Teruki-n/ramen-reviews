@@ -59,7 +59,7 @@
                         
                         
                         @forelse ($posts as $post)
-                            <div class="mt-14 grid grid-cols-1 gap-4"  x-data="{  isOpen: false, showFullTextButton: '{{ substr_count(nl2br(e($post->comment)), '<br />') > 1 || $post->image_url || strlen($post->comment) > 225 }}' }">
+                            <div class="mt-14 grid grid-cols-1 gap-4 post-content" data-kind ="{{$post->kind}}" data-taste="{{$post->taste}}" data-pref="{{ $post->pref }}" data-rating="{{$post->rating}}" x-data="{  isOpen: false, showFullTextButton: '{{ substr_count(nl2br(e($post->comment)), '<br />') > 1 || $post->image_url || strlen($post->comment) > 225 }}' }">
                                 <div class="bg-white pb-8 pl-8 pr-8">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 self-start mr-6">
@@ -121,6 +121,11 @@
                         <div class="flex justify-center mt-12">
                             {{ $posts->links("pagination::bootstrap-5") }}
                         </div>
+                        
+                        <div id="no-posts-message" class="hidden pt-20 text-center text-bold text-xl text-red-500">
+                           <p>該当する投稿がまだありません。</p> 
+                           <p>恐れいりますが、絞り込む項目を変えて再度検索してください。</p>
+                        </div>
                     </div>
                 </section>
 
@@ -149,6 +154,7 @@
                 </div>
             </div>
         </main>
+        <script src="/js/narrowdown.js"></script>
     </body>
 </html>
                     
