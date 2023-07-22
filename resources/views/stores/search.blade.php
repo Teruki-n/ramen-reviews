@@ -47,42 +47,43 @@
                                 <div class="flex flex-col sm:flex-row flex-wrap items-center mb-4 space-x-4">
                                     <span class="text-bold text-gray-700">レビュー数:</span>
                                 <label class="flex items-center sm:mt-2">
-                                    <input type="checkbox" name="review_count[]" value="0-50">
+                                    <input type="radio" name="review_count[]" value="0-50" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">～50</span>
                                 </label>
                                 <label class="flex items-center sm:mt-2">
-                                    <input type="checkbox" name="review_count[]" value="50-100">
+                                    <input type="radio" name="review_count[]" value="50-100" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">50～100</span>
                                 </label>
                                 <label class="flex items-center sm:mt-2">
-                                    <input type="checkbox" name="review_count[]" value="100-200">
+                                    <input type="radio" name="review_count[]" value="100-200" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">100～200</span>
                                 </label>
                                 <label class="flex items-center sm:mt-2">
-                                    <input type="checkbox" name="review_count[]" value="200-300">
+                                    <input type="radio" name="review_count[]" value="200-300" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">200～300</span>
                                 </label>
                                 <label class="flex items-center sm:mt-2">
-                                    <input type="checkbox" name="review_count[]" value="300-1000">
+                                    <input type="radio" name="review_count[]" value="300-10000" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">300～</span>
                                 </label>
                             </div>
+                            
                             <div class="flex flex-col sm:flex-row flex-wrap items-center space-x-4">
                                 <span class="text-bold text-gray-700">評価ランク:</span>
                                 <label class="flex items-center m:mt-2">
-                                    <input type="checkbox" name="rating[]" value="1-2">
+                                    <input type="radio" name="rating[]" value="1-2" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">★1～2</span>
                                 </label>
                                 <label class="flex items-center m:mt-2">
-                                    <input type="checkbox" name="rating[]" value="2-3">
+                                    <input type="radio" name="rating[]" value="2-3" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">★2～3</span>
                                 </label>
                                 <label class="flex items-center m:mt-2">
-                                    <input type="checkbox" name="rating[]" value="3-4">
+                                    <input type="radio" name="rating[]" value="3-4" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">★3～4</span>
                                 </label>
                                 <label class="flex items-center m:mt-2">
-                                    <input type="checkbox" name="rating[]" value="4-5">
+                                    <input type="radio" name="rating[]" value="4-5" x-data="{ selected: false }" @click="selected = !selected" :checked="selected">
                                     <span class="ml-2">★4～5</span>
                                 </label>
                             </div>

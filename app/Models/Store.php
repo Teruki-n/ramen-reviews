@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Favorite;
 
 class Store extends Model
 {
@@ -31,6 +32,7 @@ class Store extends Model
     public function users()
     {
         //多対多
-        return $this->belongsToMany(User::class);
+         return $this->belongsToMany(User::class, 'favorites');
+    
     }
 }

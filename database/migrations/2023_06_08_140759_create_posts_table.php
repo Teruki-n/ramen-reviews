@@ -30,7 +30,7 @@ return new class extends Migration
                     ]);          
             $table->integer('rating');
             $table->text('image_url')->nullable();
-            $table->text('comment')->nullable();
+            $table->text('comment');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -12,7 +12,7 @@ use App\Models\User;
 
 class StoreController extends Controller
 {
-     public function index(Request $request)
+    public function index(Request $request)
     {
         $apiKey = env('GOOGLE_PLACES_API_KEY');  // your API key
         $lat = $request->input('lat');  // latitude
@@ -23,8 +23,6 @@ class StoreController extends Controller
         
         $details = [];
         $places = [];
-        $reviewCountConditions = [];
-        $ratingConditions = [];
         $nextPageToken = null;
         
         do {
@@ -118,21 +116,46 @@ class StoreController extends Controller
             
             $details[] = $detail;
         }
-        
-        //データベースに入ったデータを取得し、それを使って絞り込みをしている
-        // $new_details = [];
-        // $review_count = $request->review_count;
-        // $review_count = explode('-', $review_count[0]);
-        // for($i = 0; $i < count($details); $i++)
-        // {
-        //     $total = $details[$i]["user_ratings_total"];
-        //     if(((int) $review_count[0]) < $total && $total < ((int) $review_count[1]))
-        //     {
-        //         $new_details[] = $details[$i];
-        //     }
-        // }
-     
-         
+  
+         //Implementation of a narrowing function
+        $reviewCountConditions = $request->input('review_count') ? explode('-', $request->input('review_count')[0]) : null;
+        $ratingConditions = $request->input('rating') ? explode('-', $request->input('rating')[0]) : null;
+
+        $filteredDetails = [];
+
+        foreach($details as $detail) {
+            $satisfyReviewCountCondition = false;
+            $satisfyRatingCondition = false;
+
+            // If the review count condition exists, check if the detail satisfies it
+            if($reviewCountConditions) {
+                $reviewCount = $detail['user_ratings_total'];
+                if($reviewCountConditions[0] <= $reviewCount && $reviewCount <= $reviewCountConditions[1]) {
+                    $satisfyReviewCountCondition = true;
+                }
+            } else {
+                $satisfyReviewCountCondition = true;
+            }
+
+            // If the rating condition exists, check if the detail satisfies it
+            if($ratingConditions) {
+                $rating = $detail['rating'];
+                if($ratingConditions[0] <= $rating && $rating <= $ratingConditions[1]) {
+                    $satisfyRatingCondition = true;
+                }
+            } else {
+                $satisfyRatingCondition = true;
+            }
+
+            // If the detail satisfies both conditions, add it to the filtered details
+            if($satisfyReviewCountCondition && $satisfyRatingCondition) {
+                $filteredDetails[] = $detail;
+            }
+        }
+
+        // Update the details with the filtered details
+        $details = $filteredDetails;
+
         
         Session::put('details', $details);
         // get current page (use 1 as default)
@@ -155,6 +178,6 @@ class StoreController extends Controller
         ['path' => $request->url(), 'query' => $request->query()]
     );
         
-        return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator]);
+        return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator,'stores' => $store]);
     }
 }

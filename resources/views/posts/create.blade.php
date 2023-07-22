@@ -14,7 +14,7 @@
         <!--content-->
         <main>
             <div>
-               <section class="max-w-3xl p-6 mx-auto bg-slate-100 rounded-md shadow-md mt-20">
+                <section class="max-w-3xl p-6 mx-auto bg-slate-100 rounded-md shadow-md mt-20">
                     <h1 class="mb-10 text-xl font-bold text-black capitalize ">レビュー投稿作成</h1>
                     <form action="/posts" method="post" enctype="multipart/form-data">
                         @csrf
@@ -125,12 +125,13 @@
                                         </div>
                                         <div class="flex space-x-4" x-show="previews.length > 0">
                                             <template x-for="(preview, index) in previews" :key="index">
-                                                <img :src="preview" alt="Image preview" class="w-28 h-28 object-cover">
+                                                <img :src="preview" alt="Image preview" class="w-28 object-cover">
                                             </template>
                                         </div>
                                         <input id="dropzone-file" type="file" name="image_url[]" class="hidden" x-ref="fileInput" x-on:change="previewFiles()" multiple/>
                                     </label>
-                                </div> 
+                                </div>
+                                <p class="text-red-400">※投稿できる画像は５枚まで</p>
                             </div>
                         
                             <div class="flex flex-row-reverse rounded-md shadow-sm mt-10"role="group">
@@ -146,6 +147,7 @@
                                 リセット
                               </button>
                             </div>
+                        </div>
                     </form>
                 </section>
             </div>
