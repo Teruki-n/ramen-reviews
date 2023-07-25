@@ -42,9 +42,11 @@ Route::get('/results',[StoreController::class,'index'])->name('search.results');
 
 Route::get('/favorite', [MyFavoriteController::class, 'index'])->name('favorites');
 
-// Route::post('/favorite/add', [MyFavoriteController::class, 'add'])->name('favorites.add');
+Route::post('/favorite/add', [StoreController::class, 'addFavorite'])->name('add_favorite');
 
-// Route::post('/favorite/remove', [MyFavoriteController::class, 'remove'])->name('favorites.remove');
+Route::post('/favorite/remove', [StoreController::class, 'removeFavorite'])->name('remove_favorite');
+
+Route::delete('/favorite/remove', [StoreController::class, 'removeFavorite'])->name('remove_favorite');
 
 Route::get('posts',[PostController::class,'index'])->name('posts');
 

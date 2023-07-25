@@ -93,6 +93,6 @@
                 </form>
             </main>
         </div>
-        <script src="/js/function.js"></script>
+        <script src="/js/api.js"></script>
     </body>
 </html>

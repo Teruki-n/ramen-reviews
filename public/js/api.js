@@ -2,14 +2,6 @@
 /*global navigator*/
 /*global google*/
 
-function deletePost(id){
-  'use strict';
-    if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
-        document.getElementById(`form_${id}`).submit();
-    }
-}
-
-   
   //geolocation API
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -56,26 +48,6 @@ function initMap() {
     });
 }
 
-// checkboxの変更イベントをキャプチャする
-        const checkboxes = document.querySelectorAll('.category-checkbox');
-        checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', filterPostsByCategory);
-        });
-                // カテゴリーによる投稿のフィルタリング
-                function filterPostsByCategory() {
-                const selectedCategories = Array.from(checkboxes)
-                    .filter(checkbox => checkbox.checked)
-                    .map(checkbox => checkbox.value);
-                    const posts = document.querySelectorAll('.post-content');
-                    posts.forEach(post => {
-                        const categoryId = post.dataset.categoryId;
-                        if (selectedCategories.length === 0 || selectedCategories.includes(categoryId)) {
-                            post.classList.remove('hidden');
-                        } else {
-                            post.classList.add('hidden');
-                        }
-                    });
-                }
 
 
 
