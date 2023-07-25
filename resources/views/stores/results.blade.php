@@ -26,47 +26,48 @@
                     @forelse ($details as $detail)
                         <div class="flex flex-wrap mt-10 bg-neutral-100">
                             <div class="w-1/2 p-6">
-                            
-                            {{--
-                            <div class="col-md-3">
-                                <form action="{{ route('favorites.add') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="store_id" value="{{ $store->id }}">
-                                    <input type="submit" value="&#xf164;いいね">
-                                </form>
-                            </div>
-                            <div class="col-md-3">
-                                <form action="{{ route('favorites.remove') }}"method="post">
-                                    @csrf
-                                    <input type="hidden" name="store_id" value="{{ $store->id }}">
-                                    <input type="submit" value="&#xf164;いいねを取り消す">
-                                </form>
-                            </div>
-                            --}}
+                                <div>
+                                    @php
+                                        $store = App\Models\Store::where('place_id', isset($detail['place_id']) ? $detail['place_id'] : null)->first();
+                                    @endphp
+                                    @if(Auth::check() && isset($store) && Auth::user()->stores->contains($store->id))
+                                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded remove-favorite" data-store-id="{{ $store->id }}">お気に入り解除</button>
+                                    @elseif(Auth::check())
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded add-favorite" data-store-id="{{ isset($store) ? $store->id : '' }}">お気に入り登録</button>
+                                    @else
+                                        <a href="{{ route('login') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">ログインしてお気に入りに追加</a>
+                                    @endif
+                                </div>
                                 
                                 <p class="text-xl my-8">
                                     <span class="font-bold ">店舗名:</span>
-                                    <span>{{ $detail["name"] }}</span>
+                                    <span>{{ isset($detail["name"]) ? $detail["name"] : '不明' }}</span>
                                 </p>
                                 <p class="text-xl my-8">
                                     <span class="font-bold">住所:</span>
-                                    <span>{{ $detail["formatted_address"] }}</span>
+                                    <span>{{ isset($detail["formatted_address"]) ? $detail["formatted_address"] : '不明' }}</span>
                                 </p>
                                 <p class="text-xl my-8">
                                     <p class="font-bold">営業時間:</p>
-                                    @foreach ($detail['opening_hours']['weekday_text'] as $day_hours)
-                                        <span>{{ $day_hours }}</span><br>
-                                    @endforeach
+                                    @if(isset($detail['opening_hours']['weekday_text']))
+                                        @foreach ($detail['opening_hours']['weekday_text'] as $day_hours)
+                                            <span>{{ $day_hours }}</span><br>
+                                        @endforeach
+                                    @endif
                                 </p>
                             </div>
-                            <div id="map-{{ $loop->index }}" class="w-1/2 map p-4"  data-lat="{{ $detail['latitude'] }}" data-lng="{{ $detail['longitude'] }}" style="height: 400px;"></div>
+                            @if(isset($detail['latitude']) && isset($detail['longitude']))
+                                <div id="map-{{ $loop->index }}" class="w-1/2 map p-4"  data-lat="{{ $detail['latitude'] }}" data-lng="{{ $detail['longitude'] }}" style="height: 400px;"></div>
+                            @endif
                             <div class="w-full p-4 flex flex-wrap">
-                                 <p class="text-xl font-bold">Googleの口コミ抜粋:</p>
-                                @foreach ($detail['reviews'] as $review)
-                                    <div>
-                                        <p>●{{ optional($review)['text'] }}</p><br>
-                                    </div>
-                                @endforeach
+                                <p class="text-xl font-bold">Googleの口コミ抜粋:</p>
+                                @if(isset($detail['reviews']))
+                                    @foreach ($detail['reviews'] as $review)
+                                        <div>
+                                            <p>●{{ isset($review['text']) ? $review['text'] : '' }}</p><br>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     @empty
@@ -80,7 +81,8 @@
                                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                                     </svg>
                                     <p class="text-red-500 text-center">申し訳ありませんが、該当する結果が見つかりませんでした。</p>
-                                    <p class="text-red-500 text-center">絞り込む項目を変えて、再度検索してください。</p>
+                                    <p class="text-red-500 text-center">絞り込む項目を変えて、再度検索してください。</p><br>
+                                    <p class="text-red-500 text-center">※もし店舗検索の画面からログインをした場合、このメッセージが出てしまうことがあります。その場合は、"お手数ですが、検索画面へ戻る"ボタンを押して、再度検索していただければ、正常に表示されます。</p>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +93,29 @@
                 </div>
             </section>
         </main>
-        <script src="{{ asset('/js/function.js') }}"></script>
+        <script src="{{ asset('/js/api.js') }}"></script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_PLACES_API_KEY') }}&callback=initMap"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(function() {
+                $('.add-favorite').click(function() {
+                    var storeId = $(this).data('store-id');
+                    $.post('{{ route('add_favorite') }}', {store_id: storeId, _token: '{{ csrf_token() }}'}, function(data) {
+                        if (data.status == 'success') {
+                            location.reload();
+                        }
+                    });
+                });
+            
+                $('.remove-favorite').click(function() {
+                    var storeId = $(this).data('store-id');
+                    $.post('{{ route('remove_favorite') }}', {store_id: storeId, _token: '{{ csrf_token() }}'}, function(data) {
+                        if (data.status == 'success') {
+                            location.reload();
+                        }
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

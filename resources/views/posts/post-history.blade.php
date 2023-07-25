@@ -98,6 +98,6 @@
                 </div>
             </div>
          </section>
-        <script src="{{ asset('/js/function.js') }}"></script>
+        <script src="{{ asset('/js/review-board.js') }}"></script>
     </body>
 </html>

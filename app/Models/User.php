@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
 use App\Models\Store;
-use App\Models\favorite;
+use App\Models\Favorite;
 
 class User extends Authenticatable
 {
@@ -56,11 +56,5 @@ class User extends Authenticatable
         //多対多
         return $this->belongsToMany(Store::class);
     }
-
-    // public function favorites()
-    // {
-    //     return $this->hasMany(Favorite::class);
-    // }
-    
 
 }

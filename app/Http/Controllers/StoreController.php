@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Store;
+use Auth;
 use App\Models\User;
 
 
@@ -19,7 +20,7 @@ class StoreController extends Controller
         $lon = $request->input('lon');   // longitude
         $reviewCounts = $request->input('review_count');  //review count ranges
         $ratings = $request->input('rating');  // rating ranges
-        $search = "ラーメン".$request->input('query'); // search words
+        $search = $request->input('query'); // search words
         
         $details = [];
         $places = [];
@@ -106,15 +107,17 @@ class StoreController extends Controller
             $store = Store::firstOrNew(['place_id' => $placeId]);
             $store->name = $detail['name'];
             $store->formatted_address = $detail['formatted_address'];
-            $store->opening_hours = $detail['opening_hours']['weekday_text'];
-            $store->reviews = json_encode($detail['reviews'] ?? []);
+            $store->opening_hours = isset($detail['opening_hours']['weekday_text']) ? json_encode($detail['opening_hours']['weekday_text']) : null;
+            $store->reviews = isset($detail['reviews']) ? json_encode($detail['reviews']) : null;   
             $store->latitude = $detail['latitude'];
             $store->longitude = $detail['longitude'];
             $store->review_count = $detail['user_ratings_total'] ?? 0;
             $store->rating = $detail['rating'] ?? 0;;
             $store->save();
             
+            $detail['place_id'] = $store->place_id;
             $details[] = $detail;
+
         }
   
          //Implementation of a narrowing function
@@ -162,7 +165,7 @@ class StoreController extends Controller
         $currentPage = LengthAwarePaginator::resolveCurrentPage() ?: 1;
         
         // items per page
-        $perPage = 5;
+        $perPage = 10;
     
         // get item offset
         $offset = ($currentPage * $perPage) - $perPage;
@@ -178,6 +181,28 @@ class StoreController extends Controller
         ['path' => $request->url(), 'query' => $request->query()]
     );
         
-        return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator,'stores' => $store]);
+        return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator]);
     }
+    
+    //add Favorites functions
+    public function addFavorite(Request $request)
+    {
+        $store = Store::find($request->store_id);
+        Auth::user()->stores()->attach($store->id);
+
+        return response()->json(['status' => 'success']);
+    }
+
+    public function removeFavorite(Request $request)
+    {
+        $store = Store::find($request->store_id);
+        Auth::user()->stores()->detach($store->id);
+
+        if ($request->expectsJson()) {
+        return response()->json(['status' => 'success']);
+        }
+    
+        return redirect()->route('favorites');
+        }
+    
 }
