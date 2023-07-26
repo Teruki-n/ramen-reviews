@@ -31,7 +31,7 @@
                         <dt class="mb-4 mt-4 bg-amber-800 text-yellow-100 text-center">味</dt>
                         <dd class="space-y-2">
                             <label class="flex items-center">
-                                <input type="checkbox" class="category-checkbox2" name="taste[]" data-filter-type="taste" value="醬油" >
+                                <input type="checkbox" class="category-checkbox2" name="taste[]" data-filter-type="taste" value="醤油" >
                                 <span class="ml-2">醤油</span>
                             </label>
                             <label class="flex items-center">

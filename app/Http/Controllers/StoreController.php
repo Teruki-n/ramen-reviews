@@ -132,7 +132,7 @@ class StoreController extends Controller
 
             // If the review count condition exists, check if the detail satisfies it
             if($reviewCountConditions) {
-                $reviewCount = $detail['user_ratings_total'];
+                $reviewCount = $detail['user_ratings_total'] ?? 0;
                 if($reviewCountConditions[0] <= $reviewCount && $reviewCount <= $reviewCountConditions[1]) {
                     $satisfyReviewCountCondition = true;
                 }
@@ -142,7 +142,7 @@ class StoreController extends Controller
 
             // If the rating condition exists, check if the detail satisfies it
             if($ratingConditions) {
-                $rating = $detail['rating'];
+                $rating = $detail['rating'] ?? 0;
                 if($ratingConditions[0] <= $rating && $rating <= $ratingConditions[1]) {
                     $satisfyRatingCondition = true;
                 }
