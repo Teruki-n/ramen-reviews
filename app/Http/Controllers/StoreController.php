@@ -108,7 +108,7 @@ class StoreController extends Controller
             $store->name = $detail['name'];
             $store->formatted_address = $detail['formatted_address'];
             $store->opening_hours = isset($detail['opening_hours']['weekday_text']) ? json_encode($detail['opening_hours']['weekday_text']) : null;
-            $store->reviews = isset($detail['reviews']) ? json_encode($detail['reviews']) : null;   
+            $store->reviews = json_encode($detail['reviews'] ?? []);
             $store->latitude = $detail['latitude'];
             $store->longitude = $detail['longitude'];
             $store->review_count = $detail['user_ratings_total'] ?? 0;
