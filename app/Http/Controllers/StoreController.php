@@ -195,6 +195,7 @@ class StoreController extends Controller
         return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator]);
     }
     
+    
     public function updateLocation(Request $request)
     {
         // Validate the new location data
