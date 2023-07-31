@@ -1,13 +1,9 @@
 /*global infoWindow*/
 /*global navigator*/
-/*global localStorage*/
 /*global google*/
 
-
   //geolocation API
-  const savedGeoPermission = localStorage.getItem('geoPermission');
-
-  if (!savedGeoPermission && navigator.geolocation) {
+  if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
           position => {
               const pos = {
@@ -16,7 +12,6 @@
               };
               document.getElementById('lat').value = pos.lat;
               document.getElementById('lon').value = pos.lng;
-              localStorage.setItem('geoPermission', 'granted');
           },
           () => {
               handleLocationError(true);
@@ -33,6 +28,7 @@
               ? "エラー: Geolocation サービスに失敗しました。"
               : "エラー: お使いのブラウザはGeolocationをサポートしていません。"
   }
+
 
 //Maps JavaScript API
 function initMap() {
