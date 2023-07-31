@@ -90,6 +90,10 @@
                             <p class="mt-2 text-center text-red-500">※Googleの検索結果、レビュー数、評価を基にしてます。</p>
                         </div>
                     </div>
+                    <div class="text-red-600">
+                        <p>※店舗検索は位置情報を基に検索しています。</p>
+                        <p>お使いのアプリの位置情報機能を常にオンにしてください。</p>
+                    </div>
                 </form>
             </main>
         </div>
