@@ -26,6 +26,17 @@ class StoreController extends Controller
         $places = [];
         $nextPageToken = null;
         
+        // Check if the session has lat and lon
+        if ($request->session()->has('lat') && $request->session()->has('lon')) {
+            $lat = $request->session()->get('lat');
+            $lon = $request->session()->get('lon');
+        } else {
+            $lat = $request->input('lat');  // latitude
+            $lon = $request->input('lon');   // longitude
+            $request->session()->put('lat', $lat);
+            $request->session()->put('lon', $lon);
+        }
+        
         do {
             $url = sprintf(
                 "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%s,%s&radius=1500&type=restaurant&keyword=%s&language=ja&key=%s",
@@ -182,6 +193,22 @@ class StoreController extends Controller
     );
         
         return view('stores/results')->with(['places' => $places, 'details' => $detailsPaginator]);
+    }
+    
+    public function updateLocation(Request $request)
+    {
+        // Validate the new location data
+        $validatedData = $request->validate([
+            'lat' => 'required|numeric',
+            'lon' => 'required|numeric',
+        ]);
+    
+        // Update the session with the new lat and lon
+        $request->session()->put('lat', $validatedData['lat']);
+        $request->session()->put('lon', $validatedData['lon']);
+    
+        // Redirect back to the previous page, or to a specific route
+        return redirect()->back()->with('message', 'Location updated successfully.');
     }
     
     //add Favorites functions
