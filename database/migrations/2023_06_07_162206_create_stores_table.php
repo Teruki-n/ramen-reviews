@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('place_id')->unique();
             $table->string('name');
             $table->string('formatted_address');
-            $table->json('opening_hours');
-            $table->json('reviews');
+            $table->json('opening_hours')->nullable;
+            $table->json('reviews')->nullable;
             $table->decimal('latitude');
             $table->decimal('longitude');
             $table->integer('review_count');

@@ -28,7 +28,7 @@ class StoreController extends Controller
         
         do {
             $url = sprintf(
-                "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%s,%s&radius=1500&type=restaurant&keyword=%s&language=ja&key=%s",
+                "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%s,%s&radius=7000&type=restaurant&keyword=%s&language=ja&key=%s",
                 $lat,
                 $lon,
                 urlencode($search),
@@ -76,7 +76,6 @@ class StoreController extends Controller
             // Google Places APIのURLを構築
             $url = sprintf(
                  "https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,formatted_address,opening_hours,geometry/location,rating,user_ratings_total,reviews&language=ja&key=%s",
-                 //"https://maps.googleapis.com/maps/api/place/details/json?place_id=%25s&fields=geometry/location&key=%25s", //座標
                 $placeId,
                 $apiKey
             );
@@ -107,7 +106,7 @@ class StoreController extends Controller
             $store = Store::firstOrNew(['place_id' => $placeId]);
             $store->name = $detail['name'];
             $store->formatted_address = $detail['formatted_address'];
-            $store->opening_hours = isset($detail['opening_hours']['weekday_text']) ? json_encode($detail['opening_hours']['weekday_text']) : null;
+            $store->opening_hours = isset($detail['opening_hours']['weekday_text']) ? json_encode($detail['opening_hours']['weekday_text']) : json_encode([]);
             $store->reviews = json_encode($detail['reviews'] ?? []);
             $store->latitude = $detail['latitude'];
             $store->longitude = $detail['longitude'];
